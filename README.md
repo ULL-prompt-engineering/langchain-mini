@@ -267,6 +267,13 @@ Action Input: 2023/5
 
 Calculator answer: 404.6
 ***********
+```
+
+Notice the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year. Also, the `Thought: I need to calculate the amount of five year periods`. The LLM has decided to use the **calculator** tool. The input to the calculator is `2023/5`.
+
+The iteration continues:
+
+```
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
