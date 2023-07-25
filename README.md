@@ -269,7 +269,7 @@ Calculator answer: 404.6
 ***********
 ```
 
-Notice the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year. Also, the `Thought: I need to calculate the amount of five year periods`. The LLM has decided to use the **calculator** tool. The input to the calculator is `2023/5`.
+Notice the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year at this writing, 2023. Also, the `Thought: I need to calculate the amount of five year periods`. The LLM has decided to use the **calculator** tool. The input to the calculator is `2023/5`.
 
 The iteration continues:
 
