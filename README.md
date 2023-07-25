@@ -75,6 +75,8 @@ Calculator answer: 404
 ```
 Here is in the first step of the **ReAct** iteration. The LLM has thought about what to do, and has decided to use the **calculator** tool. The input to the calculator must be the current year divided by 5. But it wrongly assumed the year is 2022.
 
+Now it continues to the next step:
+
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
@@ -106,6 +108,11 @@ Action Input: ceil(404)
 
 Calculator answer: 404
 ***********
+```
+
+Notice the `Thought`. Has decided to round. The iteration continues:
+
+```
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
