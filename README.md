@@ -34,12 +34,16 @@ OPENAI_API_KEY="..."
 SERPAPI_API_KEY="..."
 ~~~
 
+### How many five year periods are in the current year? Be accurate!
+
 You can now run the chain:
 
 ```
 ➜  langchain-mini git:(main) ✗ node index.mjs
 How can I help? How many five year periods are in the current year? Be accurate!
 ```
+
+We input our question, and here is the trace of the console.logs:
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
