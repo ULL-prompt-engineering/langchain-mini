@@ -72,6 +72,10 @@ Action Input: (2020/5)
 
 Calculator answer: 404
 ***********
+```
+Here is in the first step of the iteration. The LLM has thought about what to do, and has decided to use the calculator. The input to the calculator is the current year divided by 5. But wrongly assumed the year is 2022.
+
+```
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
