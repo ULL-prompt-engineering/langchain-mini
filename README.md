@@ -39,6 +39,9 @@ You can now run the chain:
 ```
 ➜  langchain-mini git:(main) ✗ node index.mjs
 How can I help? How many five year periods are in the current year? Be accurate!
+```
+
+```
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
@@ -126,6 +129,8 @@ Observation: 404
 Final Answer: There are 404 five year periods in the current year.
 There are 404 five year periods in the current year.
 ```
+
+The answer is wrong we try again. This time we ask only for the current year, asking the LLM to be accurate:
 
 ```
 How can I help? What is the current year? Be accurate!
