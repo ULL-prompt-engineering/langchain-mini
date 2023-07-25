@@ -307,6 +307,7 @@ Calculator answer: 405
 ``` 
 
 Notice the `Thought: I need to round up the number to the nearest whole number`. The LLM has decided to use the **calculator** tool. The input to the calculator is `ceil(404.6)` and the calculator output is `405`.
+
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
