@@ -149,6 +149,10 @@ The answer is wrong since at the time of this wrinting the year is 2023, so we t
 
 ```
 How can I help? What is the current year? Be accurate!
+```
+The **ReAct** loop starts again:
+
+```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 Chat History:
 Q:How many five year periods are in the current year? Be accurate!
