@@ -226,6 +226,11 @@ Better. Now we  reformulate the original question asking the LLM to think step b
 
 ```
 How can I help? Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!
+```
+
+The **ReAct** loop starts again:
+
+```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 Chat History:
 Q:How many five year periods are in the current year? Be accurate!
