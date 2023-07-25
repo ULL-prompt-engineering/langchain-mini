@@ -134,7 +134,7 @@ Final Answer: There are 404 five year periods in the current year.
 There are 404 five year periods in the current year.
 ```
 
-The answer is wrong, so we try again. This time we ask the LLM only for the current year, asking the LLM to be accurate:
+The answer is wrong since at the time of this wrinting the year is 2023, so we try again. This time we ask the LLM only for the current year, asking the LLM to be accurate:
 
 ```
 How can I help? What is the current year? Be accurate!
