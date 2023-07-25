@@ -110,7 +110,7 @@ Calculator answer: 404
 ***********
 ```
 
-Notice the `Thought`. Has decided to round. The iteration continues:
+Notice the `Thought: I need to round ...`. Has decided to round. The iteration continues:
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
