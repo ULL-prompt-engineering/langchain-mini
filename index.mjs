@@ -11,19 +11,33 @@ const promptTemplate = fs.readFileSync("prompt.txt", "utf8");
 const mergeTemplate = fs.readFileSync("merge.txt", "utf8");
 
 // use serpapi to answer the question
-const googleSearch = async (question) =>
-  await fetch(
+const googleSearch = async (question) => {
+  //question += " site:en.wikipedia.org";
+  console.log(purple(`Google search question: ${question}\n***********`));
+
+  let answer = await fetch(
     `https://serpapi.com/search?api_key=${process.env.SERPAPI_API_KEY}&q=${question}`
-  )
-    .then((res) => res.json())
-    .then(
+  ).then((res) => res.json()).then(
       (res) =>
         // try to pull the answer from various components of the response
         res.answer_box?.answer ||
         res.answer_box?.snippet ||
         res.organic_results?.[0]?.snippet
     );
+  console.log(purple(`Google search answer: ${answer}\n***********`));
+  return answer;
+}
 
+const red = text => "\x1b[91m" + text + "\x1b[0m";
+const green = text => "\x1b[92m" + text + "\x1b[0m";
+const blue = text => "\x1b[94m" + text + "\x1b[0m";
+const purple = text => "\x1b[95m" + text + "\x1b[0m";
+
+const calculator = (input) => {
+  let answer = Parser.evaluate(input).toString()
+  console.log(blue(`Calculator answer: ${answer}\n***********`));
+  return answer;
+}
 // tools that can be used to answer questions
 const tools = {
   search: {
@@ -34,7 +48,7 @@ const tools = {
   calculator: {
     description:
       "Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.",
-    execute: (input) => Parser.evaluate(input).toString(),
+    execute: calculator,
   },
 };
 
@@ -58,8 +72,8 @@ const completePrompt = async (prompt) =>
     .then((res) => res.json())
     .then((res) => res.choices[0].text)
     .then((res) => {
-      console.log("\x1b[91m" + prompt + "\x1b[0m");
-      console.log("\x1b[92m" + res + "\x1b[0m");
+      console.log(red(prompt));
+      console.log(green(res));
       return res;
     });
 
@@ -83,7 +97,7 @@ const answerQuestion = async (question) => {
     if (action) {
       // execute the action specified by the LLMs
       const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
-      const result = await tools[action.trim()].execute(actionInput);
+      const result = await tools[action.trim().toLowerCase()].execute(actionInput);
       prompt += `Observation: ${result}\n`;
     } else {
       return response.match(/Final Answer: (.*)/)?.[1];

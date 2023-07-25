@@ -36,9 +36,260 @@ SERPAPI_API_KEY="..."
 
 You can now run the chain:
 
-~~~
-% node index.mjs
-How can I help? what was the name of the first man on the moon?
-Neil Armstrong
-~~~
+```
+➜  langchain-mini git:(main) ✗ node index.mjs
+How can I help? How many five year periods are in the current year? Be accurate!
+Answer the following questions as best you can. You have access to the following tools:
 
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: How many five year periods are in the current year? Be accurate!
+Thought:
+ I need to figure out the current year, and then calculate the number of five year periods
+Action: Calculator
+Action Input: (2020/5)
+
+Calculator answer: 404
+***********
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: How many five year periods are in the current year? Be accurate!
+Thought: I need to figure out the current year, and then calculate the number of five year periods
+Action: Calculator
+Action Input: (2020/5)
+Observation: 404
+
+Thought: I need to round up to the nearest whole number
+Action: Calculator
+Action Input: ceil(404)
+
+Calculator answer: 404
+***********
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: How many five year periods are in the current year? Be accurate!
+Thought: I need to figure out the current year, and then calculate the number of five year periods
+Action: Calculator
+Action Input: (2020/5)
+Observation: 404
+Thought: I need to round up to the nearest whole number
+Action: Calculator
+Action Input: ceil(404)
+Observation: 404
+
+Final Answer: There are 404 five year periods in the current year.
+There are 404 five year periods in the current year.
+```
+
+```
+How can I help? What is the current year? Be accurate!
+Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+Chat History:
+Q:How many five year periods are in the current year? Be accurate!
+A:There are 404 five year periods in the current year.
+
+Follow Up Input: What is the current year? Be accurate!
+Standalone question:
+ What is the current year?
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question:  What is the current year?
+Thought:
+ I need to find out what year it is
+Action: search
+Action Input: current year
+
+Google search question: current year
+***********
+Google search answer: The current year is 2023 and today's date (according to the Gregorian calendar) is Tuesday, July 25, 2023. If you encounter AD or CE in front of, ...
+***********
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question:  What is the current year?
+Thought: I need to find out what year it is
+Action: search
+Action Input: current year
+Observation: The current year is 2023 and today's date (according to the Gregorian calendar) is Tuesday, July 25, 2023. If you encounter AD or CE in front of, ...
+
+Final Answer: The current year is 2023.
+The current year is 2023.
+```
+
+```
+How can I help? Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!
+Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+Chat History:
+Q:How many five year periods are in the current year? Be accurate!
+A:There are 404 five year periods in the current year.
+Q: What is the current year?
+A:The current year is 2023.
+
+Follow Up Input: Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!
+Standalone question:
+ What is the total number of five year periods in the year 2023?
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question:  What is the total number of five year periods in the year 2023?
+Thought:
+ I need to calculate the amount of five year periods.
+Action: calculator
+Action Input: 2023/5
+
+Calculator answer: 404.6
+***********
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question:  What is the total number of five year periods in the year 2023?
+Thought: I need to calculate the amount of five year periods.
+Action: calculator
+Action Input: 2023/5
+Observation: 404.6
+
+Thought: I need to round up the number to the nearest whole number.
+Action: calculator
+Action Input: ceil(404.6)
+
+Calculator answer: 405
+***********
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question:  What is the total number of five year periods in the year 2023?
+Thought: I need to calculate the amount of five year periods.
+Action: calculator
+Action Input: 2023/5
+Observation: 404.6
+Thought: I need to round up the number to the nearest whole number.
+Action: calculator
+Action Input: ceil(404.6)
+Observation: 405
+
+Thought: I now know the final answer.
+Final Answer: 405
+405
+```
