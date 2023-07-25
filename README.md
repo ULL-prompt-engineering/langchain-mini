@@ -189,6 +189,12 @@ Google search question: current year
 ***********
 Google search answer: The current year is 2023 and today's date (according to the Gregorian calendar) is Tuesday, July 25, 2023. If you encounter AD or CE in front of, ...
 ***********
+```
+Notice the `Thought: I need to find out what year it is`. The LLM has decided to use the **search** tool. The input to the search tool is `current year`. 
+The iteration continues:
+
+```
+```
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
