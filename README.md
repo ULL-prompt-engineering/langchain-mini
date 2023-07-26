@@ -86,10 +86,6 @@ The JSON output result from `res.json()` includes structured data for
 * <a href="https://serpapi.com/shopping-results">shopping results</a>,
 *  <a href="https://serpapi.com/videos-results">video results</a>, and more.
   
-A search status is accessible through <code>search_metadata.status</code>. 
-It flows this way: <code>Processing</code> -&gt; <code>Success</code> || <code>Error</code>. 
-If a search has failed, <code>error</code> will contain an error message. <code>search_metadata.id</code> is the search ID inside SerpApi.
-
 The code at [serpapi.mjs](serpapi.mjs) illustrates how to use the SerpApi to answer a simple question:
 
 ```js
