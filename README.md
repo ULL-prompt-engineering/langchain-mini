@@ -1,5 +1,6 @@
 - [🦜️🔗 LangChain-mini](#️-langchain-mini)
   - [How the Google Search API works](#how-the-google-search-api-works)
+  - [The Calculator tool](#the-calculator-tool)
   - [Running / developing](#running--developing)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
     - [1](#1)
@@ -130,6 +131,26 @@ A search status is accessible through `search_metadata.status`.
 It flows this way: `Processing` -> `Success` || `Error`. 
 If a search has failed, `error` will contain an error message. `search_metadata.id` is the search ID inside SerpApi.
 
+## The Calculator tool
+
+The most important thing about the calculator is that it has to provide an appropiate anwser to the LLM if there ere 
+errors. That is why it ask the LLM `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`:
+
+``` js
+import { Parser } from "expr-eval";
+```
+``` js
+const calculator = (input) => {
+  try {
+    let answer = Parser.evaluate(input).toString()
+    console.log(blue(`Calculator answer: ${answer}\n***********`));
+    return answer;
+  } catch (e) {    
+    console.log(blue(`Calculator got errors: ${e}\n***********`));
+    return `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`;
+  }
+}
+```
 
 ## Running / developing 
 Install dependencies, and run (with node >= v18):
