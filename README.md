@@ -1,6 +1,7 @@
 - [🦜️🔗 LangChain-mini](#️-langchain-mini)
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [The Calculator tool](#the-calculator-tool)
+  - [The prompt template](#the-prompt-template)
   - [Running / developing](#running--developing)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
     - [1](#1)
@@ -151,6 +152,82 @@ const calculator = (input) => {
   }
 }
 ```
+
+## The prompt template 
+
+The `prompt.txt` file is a template containing the instruction  for the LLM.
+
+```
+Answer the following questions as best you can. You have access to the following tools:
+
+${tools}
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [${toolnames}]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: ${question}
+Thought:
+```
+
+The template is first filled inside the function `answerQuestion` with the information of the `question` 
+and the available `tools`:
+
+```js
+let prompt = promptTemplate.replace("${question}", question).replace(
+    "${tools}",
+    Object.keys(tools)
+      .map((toolname) => `${toolname}: ${tools[toolname].description}`)
+      .join("\n")
+  ).replace("${toolnames}", Object.keys(tools).join(","));
+```
+
+Then we want to iteratively 
+
+1. ask the LLM to give us an Action,
+   
+   ```js
+   const action = await completePrompt(prompt);
+   prompt += action;
+   ```
+   determine the `action` and the `actionInput`:
+
+   ```js
+   const action = response.match(/Action: (.*)/)?.[1];
+    if (action) {
+      // execute the action specified by the LLMs
+      const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
+      ...
+    }
+   ```
+2. execute the corresponding tool (`calculator` or `search`) based on the given `action`, supplying them with the `Action Input`, 
+
+  ```js
+  const result = await tools[action.trim().toLowerCase()].execute(actionInput);
+  ``` 
+4. appending the results to the prompt as an `Observation`:
+
+    ```js
+        prompt += `Observation: ${result}\n`;
+    ```
+
+This process continues until the LLM orchestrator determines that it has enough information and returns a Final Answer:
+After that we ask the LLM to give an anwser to the question and the response is added to the prompt:
+
+``` js
+   const response = await completePrompt(prompt);
+   prompt += response;
+```
+
 
 ## Running / developing 
 Install dependencies, and run (with node >= v18):
