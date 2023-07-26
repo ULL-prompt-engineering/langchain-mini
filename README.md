@@ -1,3 +1,8 @@
+- [🦜️🔗 LangChain-mini](#️-langchain-mini)
+  - [How the Google Search API works](#how-the-google-search-api-works)
+  - [Running / developingA search status is accessible through `search_metadata.status`.](#running--developinga-search-status-is-accessible-through-search_metadatastatus)
+    - [How many five year periods are in the current year? Be accurate!](#how-many-five-year-periods-are-in-the-current-year-be-accurate)
+
 # 🦜️🔗 LangChain-mini 
 
 This is a very simple re-implementation of [LangChain](https://github.com/hwchase17/langchain), in ~100 lines of code. In essence, it is an LLM (GPT-3.5) powered chat application that is able to use tools (Google search and a calculator) in order to hold conversations and answer questions. 
