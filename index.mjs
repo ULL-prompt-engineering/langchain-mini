@@ -30,9 +30,13 @@ const googleSearch = async (question) => {
 }
 
 const calculator = (input) => {
-  let answer = Parser.evaluate(input).toString()
-  console.log(blue(`Calculator answer: ${answer}\n***********`));
-  return answer;
+  try {
+    let answer = Parser.evaluate(input).toString()
+    console.log(blue(`Calculator answer: ${answer}\n***********`));
+    return answer;
+  } catch (e) {
+    return input;
+  }
 }
 // tools that can be used to answer questions
 const tools = {
@@ -93,6 +97,8 @@ const answerQuestion = async (question) => {
     if (action) {
       // execute the action specified by the LLMs
       const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
+      console.log(blue(`Action: ${action.trim()}`));
+      console.log(blue(`Action Input: ${actionInput}`));
       const result = await tools[action.trim().toLowerCase()].execute(actionInput);
       prompt += `Observation: ${result}\n`;
     } else {
