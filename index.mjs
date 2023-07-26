@@ -34,7 +34,8 @@ const calculator = (input) => {
     let answer = Parser.evaluate(input).toString()
     console.log(blue(`Calculator answer: ${answer}\n***********`));
     return answer;
-  } catch (e) {
+  } catch (e) {    
+    console.log(blue(`Calculator got errors: ${e}\n***********`));
     return `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`;
   }
 }

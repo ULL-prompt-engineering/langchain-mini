@@ -2,7 +2,11 @@
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [Running / developing](#running--developing)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
-  - [What was the highest temperature (in Celsius) in San Cristobal de La Laguna yesterday?](#what-was-the-highest-temperature-in-celsius-in-san-cristobal-de-la-laguna-yesterday)
+  - [What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?](#what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
+    - [1](#1)
+    - [2](#2)
+    - [3](#3)
+    - [4](#4)
 
 # 🦜️🔗 LangChain-mini 
 
@@ -444,14 +448,14 @@ Final Answer: 405
 405
 ```
 
-## What was the highest temperature (in Celsius) in San Cristobal de La Laguna yesterday?
+## What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
 
+
+### 1
 
 ```
-➜  langchain-mini git:(main) ✗ node index.mjs
-How can I help? What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
-(node:23018) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
+➜  langchain-mini git:(main) ✗ node index.mjs                         
+How can I help? What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
@@ -470,21 +474,21 @@ Final Answer: the final answer to the original input question
 
 Begin!
 
-Question: What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
+Question: What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
 Thought:
- I need to look up the temperature for that day in that city 
+ I need to find a reliable source of information
 Action: search
-Action Input: "highest temperature San Cristobal de La Laguna yesterday"
+Action Input: "highest temperature in Santa Cruz de Tenerife yesterday"
 
 Action: search
-Action Input: highest temperature San Cristobal de La Laguna yesterday"
-Google search question: highest temperature San Cristobal de La Laguna yesterday"
+Action Input: highest temperature in Santa Cruz de Tenerife yesterday"
+Google search question: highest temperature in Santa Cruz de Tenerife yesterday"
 ***********
-Google search answer: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 12:30 AM, 66 °F · 63 °F · 88 °%, WNW ; 1:00 AM, 64 °F · 61 °F · 88 °%, WNW ...
+Google search answer: Santa Cruz de Tenerife Temperature Yesterday. Maximum temperature yesterday: 75 °F (at 3:00 pm) Minimum temperature yesterday: 63 °F (at 4:30 am)
 ***********
 ```
 
-Second step:
+### 2
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -505,23 +509,26 @@ Final Answer: the final answer to the original input question
 
 Begin!
 
-Question: What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
-Thought: I need to look up the temperature for that day in that city 
+Question: What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
+Thought: I need to find a reliable source of information
 Action: search
-Action Input: "highest temperature San Cristobal de La Laguna yesterday"
-Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 12:30 AM, 66 °F · 63 °F · 88 °%, WNW ; 1:00 AM, 64 °F · 61 °F · 88 °%, WNW ...
+Action Input: "highest temperature in Santa Cruz de Tenerife yesterday"
+Observation: Santa Cruz de Tenerife Temperature Yesterday. Maximum temperature yesterday: 75 °F (at 3:00 pm) Minimum temperature yesterday: 63 °F (at 4:30 am)
 
-Thought: I need to convert the temperature to Celsius
+Thought: I need to convert from Fahrenheit to Celsius
 Action: calculator
-Action Input: 66 * (5/9) + 32
+Action Input: (75 F - 32) * 5/9
 
 Action: calculator
-Action Input: 66 * (5/9) + 32
-Calculator answer: 68.66666666666667
+Action Input: (75 F - 32) * 5/9
+Calculator got errors: Error: parse error [1:6]: Expected )
 ***********
 ```
 
-Notice that hast taken `66` when there were higher temperatures in the search results. The iteration continues:
+The expression `(75 F - 32) * 5/9` is not valid, since `F` is not defined.
+
+### 3
+
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -542,18 +549,65 @@ Final Answer: the final answer to the original input question
 
 Begin!
 
-Question: What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
-Thought: I need to look up the temperature for that day in that city 
+Question: What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
+Thought: I need to find a reliable source of information
 Action: search
-Action Input: "highest temperature San Cristobal de La Laguna yesterday"
-Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 12:30 AM, 66 °F · 63 °F · 88 °%, WNW ; 1:00 AM, 64 °F · 61 °F · 88 °%, WNW ...
-Thought: I need to convert the temperature to Celsius
+Action Input: "highest temperature in Santa Cruz de Tenerife yesterday"
+Observation: Santa Cruz de Tenerife Temperature Yesterday. Maximum temperature yesterday: 75 °F (at 3:00 pm) Minimum temperature yesterday: 63 °F (at 4:30 am)
+Thought: I need to convert from Fahrenheit to Celsius
 Action: calculator
-Action Input: 66 * (5/9) + 32
-Observation: 68.66666666666667
+Action Input: (75 F - 32) * 5/9
+Observation: Please reformulate the expression. The calculator tool has failed with error:
+'Error: parse error [1:6]: Expected )'
+
+Thought: I need to change the expression
+Action: calculator
+Action Input: ((75-32) * 5/9)
+
+Action: calculator
+Action Input: ((75-32) * 5/9)
+Calculator answer: 23.88888888888889
+***********
+```
+
+### 4
+
+```
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
+Thought: I need to find a reliable source of information
+Action: search
+Action Input: "highest temperature in Santa Cruz de Tenerife yesterday"
+Observation: Santa Cruz de Tenerife Temperature Yesterday. Maximum temperature yesterday: 75 °F (at 3:00 pm) Minimum temperature yesterday: 63 °F (at 4:30 am)
+Thought: I need to convert from Fahrenheit to Celsius
+Action: calculator
+Action Input: (75 F - 32) * 5/9
+Observation: Please reformulate the expression. The calculator tool has failed with error:
+'Error: parse error [1:6]: Expected )'
+Thought: I need to change the expression
+Action: calculator
+Action Input: ((75-32) * 5/9)
+Observation: 23.88888888888889
 
 Thought: I now know the final answer
-Final Answer: 18.666666666666668 °C
-18.666666666666668 °C
-How can I help?  
+Final Answer: Yesterday's highest temperature in Santa Cruz de Tenerife was 23.89 Celsius.
+Yesterday's highest temperature in Santa Cruz de Tenerife was 23.89 Celsius.
+How can I help? 
 ```
