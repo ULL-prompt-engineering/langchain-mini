@@ -196,7 +196,7 @@ let prompt = promptTemplate.replace("${question}", question).replace(
 
 Then we want to iteratively:
 
-1. ask the LLM to give us an Action,
+1. ask the LLM to give us an Action, that is to decide which tool to use (or no tool at all)
    
    ```js
    const action = await completePrompt(prompt);
