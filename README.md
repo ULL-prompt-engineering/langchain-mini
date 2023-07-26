@@ -29,7 +29,7 @@ For more information about this project, read
 
 ## How the Google Search API works
 
-Here is the function inside [index.mjs](index.mjs) that uses the SerpApi to answer a  question:
+Here is the function inside [index.mjs](index.mjs#L16-L30) that uses the SerpApi to answer a  question:
 
 ```js
 // use serpapi to answer the question
