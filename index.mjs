@@ -35,7 +35,7 @@ const calculator = (input) => {
     console.log(blue(`Calculator answer: ${answer}\n***********`));
     return answer;
   } catch (e) {
-    return input;
+    return `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`;
   }
 }
 // tools that can be used to answer questions

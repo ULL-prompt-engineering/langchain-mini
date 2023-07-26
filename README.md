@@ -2,7 +2,7 @@
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [Running / developing](#running--developing)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
-  - [What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?](#what-was-the-high-temperature-in-san-cristobal-de-la-laguna-yesterday-in-celsius)
+  - [What was the highest temperature (in Celsius) in San Cristobal de La Laguna yesterday?](#what-was-the-highest-temperature-in-celsius-in-san-cristobal-de-la-laguna-yesterday)
 
 # 🦜️🔗 LangChain-mini 
 
@@ -444,11 +444,14 @@ Final Answer: 405
 405
 ```
 
-## What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+## What was the highest temperature (in Celsius) in San Cristobal de La Laguna yesterday?
+
 
 ```
-➜  langchain-mini git:(main) node index.mjs              
-How can I help? What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+➜  langchain-mini git:(main) ✗ node index.mjs
+How can I help? What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
+(node:23018) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
@@ -466,24 +469,22 @@ Thought: I now know the final answer
 Final Answer: the final answer to the original input question
 
 Begin!
-```
 
-First iteration: 
-
-```
-Question: What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+Question: What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
 Thought:
- I should search for an answer.
+ I need to look up the temperature for that day in that city 
 Action: search
-Action Input: "san cristobal de la laguna temperature yesterday celsius"
+Action Input: "highest temperature San Cristobal de La Laguna yesterday"
 
-Google search question: san cristobal de la laguna temperature yesterday celsius"
+Action: search
+Action Input: highest temperature San Cristobal de La Laguna yesterday"
+Google search question: highest temperature San Cristobal de La Laguna yesterday"
 ***********
-Google search answer: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 1:30 AM, 64 °F · 63 °F ; 2:00 AM, 66 °F · 61 °F ; 2:30 AM, 66 °F · 59 °F ; 3: ...
+Google search answer: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 12:30 AM, 66 °F · 63 °F · 88 °%, WNW ; 1:00 AM, 64 °F · 61 °F · 88 °%, WNW ...
 ***********
 ```
 
-Second iteration:
+Second step:
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -504,23 +505,23 @@ Final Answer: the final answer to the original input question
 
 Begin!
 
-Question: What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
-Thought: I should search for an answer.
+Question: What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
+Thought: I need to look up the temperature for that day in that city 
 Action: search
-Action Input: "san cristobal de la laguna temperature yesterday celsius"
-Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 1:30 AM, 64 °F · 63 °F ; 2:00 AM, 66 °F · 61 °F ; 2:30 AM, 66 °F · 59 °F ; 3: ...
+Action Input: "highest temperature San Cristobal de La Laguna yesterday"
+Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 12:30 AM, 66 °F · 63 °F · 88 °%, WNW ; 1:00 AM, 64 °F · 61 °F · 88 °%, WNW ...
 
-Thought: I should convert the temperature from Fahrenheit to Celsius.
+Thought: I need to convert the temperature to Celsius
 Action: calculator
-Action Input: (64-32)*5/9
+Action Input: 66 * (5/9) + 32
 
-Calculator answer: 17.77777777777778
+Action: calculator
+Action Input: 66 * (5/9) + 32
+Calculator answer: 68.66666666666667
 ***********
 ```
 
-The formula is correct: `C = 5/9(F-32)` but it has chosen  `64 °F` . Yesterday (25/07/2023) we reached more than 72°F, that is more than 22°C.
-
-Third iteration:
+Notice that hast taken `66` when there were higher temperatures in the search results. The iteration continues:
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -541,19 +542,18 @@ Final Answer: the final answer to the original input question
 
 Begin!
 
-Question: What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
-Thought: I should search for an answer.
+Question: What was the highest temperature in San Cristobal de La Laguna yesterday in Celsius?
+Thought: I need to look up the temperature for that day in that city 
 Action: search
-Action Input: "san cristobal de la laguna temperature yesterday celsius"
-Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 1:30 AM, 64 °F · 63 °F ; 2:00 AM, 66 °F · 61 °F ; 2:30 AM, 66 °F · 59 °F ; 3: ...
-Thought: I should convert the temperature from Fahrenheit to Celsius.
+Action Input: "highest temperature San Cristobal de La Laguna yesterday"
+Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 12:30 AM, 66 °F · 63 °F · 88 °%, WNW ; 1:00 AM, 64 °F · 61 °F · 88 °%, WNW ...
+Thought: I need to convert the temperature to Celsius
 Action: calculator
-Action Input: (64-32)*5/9
-Observation: 17.77777777777778
+Action Input: 66 * (5/9) + 32
+Observation: 68.66666666666667
 
-Thought: I now know the final answer.
-Final Answer: The high temperature in San Cristobal de La Laguna yesterday in Celsius was 17.78°C.
-The high temperature in San Cristobal de La Laguna yesterday in Celsius was 17.78°C.
+Thought: I now know the final answer
+Final Answer: 18.666666666666668 °C
+18.666666666666668 °C
+How can I help?  
 ```
-
-The answer is wrong but seems to be due to the fact that the results of the search are insufficient. 
