@@ -17,9 +17,14 @@ It takes the average person about three hours to solve a Rubik's cube for the fi
 
 This is not intended to be a replacement for LangChain, instead it was built for fun and educational purposes. If you're interested in how LangChain, and similar tools work, this is a good starting point.
 
-For more information about this project, read the accompanying blogpost - [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html)
+For more information about this project, read 
 
-## googleSearch
+1. The blogpost - [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html)
+2. [Prompt Engineering 101](https://github.com/ULL-prompt-engineering/prompt-engineering-101) tutorial
+
+## How the Google Search API works
+
+Here is the function that uses the SerpApi to answer a  question:
 
 ```js
 // use serpapi to answer the question
