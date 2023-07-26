@@ -156,7 +156,7 @@ const calculator = (input) => {
 ## The prompt template 
 
 The `prompt.txt` file is a template from which we will build the instructions  for the LLM on each step of the 
-chat. The answers to the previous questions are appended to the template as `Observations`.
+chat. The answers to the previous questions are appended to the template as `Thought`s.
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -179,6 +179,8 @@ Begin!
 Question: ${question}
 Thought:
 ```
+
+Notice the `Thought:` field at the end. This is where the LLM will write its thoughts.
 
 The template is first filled inside the function `answerQuestion` with the information of the `question` 
 and the available `tools`:
