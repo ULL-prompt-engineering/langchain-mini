@@ -1,6 +1,6 @@
 - [🦜️🔗 LangChain-mini](#️-langchain-mini)
   - [How the Google Search API works](#how-the-google-search-api-works)
-  - [Running / developingA search status is accessible through `search_metadata.status`.](#running--developinga-search-status-is-accessible-through-search_metadatastatus)
+  - [Running / developing](#running--developing)
     - [How many five year periods are in the current year? Be accurate!](#how-many-five-year-periods-are-in-the-current-year-be-accurate)
 
 # 🦜️🔗 LangChain-mini 
@@ -119,11 +119,13 @@ Here is the output:
 
 See the full output in file [serpapi-output.mjs](serpapi-output.mjs).
 
-
-## Running / developingA search status is accessible through `search_metadata.status`. 
+The code example does not deal with errors. 
+A search status is accessible through `search_metadata.status`. 
 It flows this way: `Processing` -> `Success` || `Error`. 
 If a search has failed, `error` will contain an error message. `search_metadata.id` is the search ID inside SerpApi.
 
+
+## Running / developing 
 Install dependencies, and run (with node >= v18):
 
 ~~~
