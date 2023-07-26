@@ -180,7 +180,7 @@ Question: ${question}
 Thought:
 ```
 
-Notice the `Thought:` field at the end. This is where the LLM will write its thoughts.
+Notice the `Thought:` field at the end. This is where the program will append the LLM response.
 
 The template is first filled inside the function `answerQuestion` with the information of the `question` 
 and the available `tools`:
