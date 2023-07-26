@@ -191,7 +191,7 @@ let prompt = promptTemplate.replace("${question}", question).replace(
   ).replace("${toolnames}", Object.keys(tools).join(","));
 ```
 
-Then we want to iteratively 
+Then we want to iteratively:
 
 1. ask the LLM to give us an Action,
    
@@ -199,10 +199,11 @@ Then we want to iteratively
    const action = await completePrompt(prompt);
    prompt += action;
    ```
-   determine the `action` and the `actionInput`:
+   Since the `prompt` ends with the `Thought` field, the LLM response is added as a `Tought`.
+   We also need to determine the values for the `action` and the `actionInput` fields from the LLM response using regular expressions:
 
    ```js
-   const action = response.match(/Action: (.*)/)?.[1];
+    const action = response.match(/Action: (.*)/)?.[1];
     if (action) {
       // execute the action specified by the LLMs
       const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
@@ -214,19 +215,22 @@ Then we want to iteratively
   ```js
   const result = await tools[action.trim().toLowerCase()].execute(actionInput);
   ``` 
-4. appending the results to the prompt as an `Observation`:
+4. appending the results of the tool to the prompt as an `Observation`:
 
     ```js
         prompt += `Observation: ${result}\n`;
     ```
 
-This process continues until the LLM orchestrator determines that it has enough information and returns a Final Answer:
-After that we ask the LLM to give an anwser to the question and the response is added to the prompt:
-
-``` js
-   const response = await completePrompt(prompt);
-   prompt += response;
-```
+5. This process continues until the LLM orchestrator determines that it has enough information and returns a Final Answer.
+   
+   ```js
+    const action = response.match(/Action: (.*)/)?.[1];
+    if (action) {
+      ...
+    } else {
+      return response.match(/Final Answer: (.*)/)?.[1]; // The text after the colon
+    } 
+   ```
 
 
 ## Running / developing 
