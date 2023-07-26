@@ -571,6 +571,8 @@ Action Input: ((75-32) * 5/9)
 Calculator answer: 23.88888888888889
 ***********
 ```
+The **Thought** `I need to change the expression` is right 
+and the expression `((75-32) * 5/9)` used as `Action Input` is valid.
 
 ### 4
 
