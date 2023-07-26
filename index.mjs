@@ -85,7 +85,7 @@ const answerQuestion = async (question) => {
     Object.keys(tools)
       .map((toolname) => `${toolname}: ${tools[toolname].description}`)
       .join("\n")
-  );
+  ).replace("${toolnames}", Object.keys(tools).join(","));
 
   // allow the LLM to iterate until it finds a final answer
   while (true) {
