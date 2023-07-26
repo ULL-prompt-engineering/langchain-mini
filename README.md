@@ -1,7 +1,7 @@
 - [🦜️🔗 LangChain-mini](#️-langchain-mini)
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [Running / developing](#running--developing)
-    - [How many five year periods are in the current year? Be accurate!](#how-many-five-year-periods-are-in-the-current-year-be-accurate)
+    - [Question: How many five year periods are in the current year? Be accurate!](#question-how-many-five-year-periods-are-in-the-current-year-be-accurate)
 
 # 🦜️🔗 LangChain-mini 
 
@@ -135,7 +135,7 @@ OPENAI_API_KEY="..."
 SERPAPI_API_KEY="..."
 ~~~
 
-### How many five year periods are in the current year? Be accurate!
+### Question: How many five year periods are in the current year? Be accurate!
 
 You can now run the chain:
 
