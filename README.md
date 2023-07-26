@@ -1,7 +1,8 @@
 - [🦜️🔗 LangChain-mini](#️-langchain-mini)
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [Running / developing](#running--developing)
-    - [Question: How many five year periods are in the current year? Be accurate!](#question-how-many-five-year-periods-are-in-the-current-year-be-accurate)
+  - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
+  - [What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?](#what-was-the-high-temperature-in-san-cristobal-de-la-laguna-yesterday-in-celsius)
 
 # 🦜️🔗 LangChain-mini 
 
@@ -135,7 +136,7 @@ OPENAI_API_KEY="..."
 SERPAPI_API_KEY="..."
 ~~~
 
-### Question: How many five year periods are in the current year? Be accurate!
+##  Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
 
 You can now run the chain:
 
@@ -442,3 +443,117 @@ Thought: I now know the final answer.
 Final Answer: 405
 405
 ```
+
+## What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+
+```
+➜  langchain-mini git:(main) node index.mjs              
+How can I help? What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+```
+
+First iteration: 
+
+```
+Question: What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+Thought:
+ I should search for an answer.
+Action: search
+Action Input: "san cristobal de la laguna temperature yesterday celsius"
+
+Google search question: san cristobal de la laguna temperature yesterday celsius"
+***********
+Google search answer: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 1:30 AM, 64 °F · 63 °F ; 2:00 AM, 66 °F · 61 °F ; 2:30 AM, 66 °F · 59 °F ; 3: ...
+***********
+```
+
+Second iteration:
+
+```
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+Thought: I should search for an answer.
+Action: search
+Action Input: "san cristobal de la laguna temperature yesterday celsius"
+Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 1:30 AM, 64 °F · 63 °F ; 2:00 AM, 66 °F · 61 °F ; 2:30 AM, 66 °F · 59 °F ; 3: ...
+
+Thought: I should convert the temperature from Fahrenheit to Celsius.
+Action: calculator
+Action Input: (64-32)*5/9
+
+Calculator answer: 17.77777777777778
+***********
+```
+
+The formula is correct: `C = 5/9(F-32)` but it has chosen  `64 °F` . Yesterday (25/07/2023) we reached more than 72°F, that is more than 22°C.
+
+Third iteration:
+
+```
+Answer the following questions as best you can. You have access to the following tools:
+
+search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
+calculator: Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: What was the high temperature in San Cristobal de La Laguna yesterday in Celsius?
+Thought: I should search for an answer.
+Action: search
+Action Input: "san cristobal de la laguna temperature yesterday celsius"
+Observation: San Cristóbal de La Laguna, Santa Cruz de Tenerife, Spain Weather Historystar_ratehome ; 1:30 AM, 64 °F · 63 °F ; 2:00 AM, 66 °F · 61 °F ; 2:30 AM, 66 °F · 59 °F ; 3: ...
+Thought: I should convert the temperature from Fahrenheit to Celsius.
+Action: calculator
+Action Input: (64-32)*5/9
+Observation: 17.77777777777778
+
+Thought: I now know the final answer.
+Final Answer: The high temperature in San Cristobal de La Laguna yesterday in Celsius was 17.78°C.
+The high temperature in San Cristobal de La Laguna yesterday in Celsius was 17.78°C.
+```
+
+And again the answer is wrong. 
