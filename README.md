@@ -2,10 +2,15 @@
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [Running / developing](#running--developing)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
-  - [What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?](#what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
     - [1](#1)
     - [2](#2)
     - [3](#3)
+    - [How can I help? "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
+    - [How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
+  - [What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?](#what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
+    - [1](#1-1)
+    - [2](#2-1)
+    - [3](#3-1)
     - [4](#4)
 
 # 🦜️🔗 LangChain-mini 
@@ -151,6 +156,8 @@ How can I help? How many five year periods are in the current year? Be accurate!
 
 We input our question `How many five year periods are in the current year? Be accurate!`, and here is the trace of the console.logs:
 
+### 1
+
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
@@ -180,6 +187,8 @@ Calculator answer: 404
 ***********
 ```
 Here is in the first step of the **ReAct** iteration. The LLM has thought about what to do, and has decided to use the **calculator** tool. The input to the calculator must be the current year divided by 5. But it wrongly assumed the year is 2022.
+
+### 2
 
 Now it continues to the next step:
 
@@ -218,6 +227,8 @@ Calculator answer: 404
 
 Notice the `Thought: I need to round ...`. Has decided to round. The iteration continues:
 
+### 3
+
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
@@ -252,6 +263,8 @@ There are 404 five year periods in the current year.
 ```
 
 The answer is wrong since at the time of this wrinting the year is 2023, so we try again. This time we ask the LLM only for the current year, asking the LLM to be accurate:
+
+### How can I help? "What is the current year? Be accurate!"
 
 ```
 How can I help? What is the current year? Be accurate!
@@ -296,7 +309,10 @@ Google search question: current year
 Google search answer: The current year is 2023 and today's date (according to the Gregorian calendar) is Tuesday, July 25, 2023. If you encounter AD or CE in front of, ...
 ***********
 ```
-Notice the `Thought: I need to find out what year it is`. The LLM has decided to use the **search** tool. The input to the search tool is `current year`. 
+
+Notice the `Thought: I need to find out what year it is`. 
+The LLM has decided to use the **search** tool. The input to the search tool is `current year`. 
+
 The iteration continues:
 
 ```
@@ -328,7 +344,11 @@ Final Answer: The current year is 2023.
 The current year is 2023.
 ```
 
-Better. Now we  reformulate the original question asking the LLM to think step by step and be accurate.
+Better. 
+
+### How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"
+
+Now we  reformulate the original question asking the LLM to think step by step and be accurate.
 
 ```
 How can I help? Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!
