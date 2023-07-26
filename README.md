@@ -120,7 +120,7 @@ const callback = function(data) {
 
 ssearch.json(params, callback); 
 ```
-Here is the output:
+Here is the (folded) output:
 
 ![serpapi](/images/serpapi.png)
 
