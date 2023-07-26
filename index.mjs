@@ -5,6 +5,8 @@ import fs from "fs";
 import { Parser } from "expr-eval";
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
+import { red, green, blue, purple } from "./utils.mjs";
+
 const rl = readline.createInterface({ input, output });
 
 const promptTemplate = fs.readFileSync("prompt.txt", "utf8");
@@ -12,7 +14,6 @@ const mergeTemplate = fs.readFileSync("merge.txt", "utf8");
 
 // use serpapi to answer the question
 const googleSearch = async (question) => {
-  //question += " site:en.wikipedia.org";
   console.log(purple(`Google search question: ${question}\n***********`));
 
   let answer = await fetch(
@@ -27,11 +28,6 @@ const googleSearch = async (question) => {
   console.log(purple(`Google search answer: ${answer}\n***********`));
   return answer;
 }
-
-const red = text => "\x1b[91m" + text + "\x1b[0m";
-const green = text => "\x1b[92m" + text + "\x1b[0m";
-const blue = text => "\x1b[94m" + text + "\x1b[0m";
-const purple = text => "\x1b[95m" + text + "\x1b[0m";
 
 const calculator = (input) => {
   let answer = Parser.evaluate(input).toString()
