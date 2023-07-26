@@ -111,7 +111,7 @@ const params = {
   q: "What is the current year?",
   hl: "en",
   gl: "us",
-  num: 1,
+  num: 1, // ask for only one result
 };
 
 const callback = function(data) {
@@ -120,7 +120,7 @@ const callback = function(data) {
 
 ssearch.json(params, callback); 
 ```
-Here is the (folded) output:
+Here is the (folded) output. Notice the field `snippet` of the first object in the array `organic_results`:
 
 ![serpapi](/images/serpapi.png)
 
