@@ -155,7 +155,8 @@ const calculator = (input) => {
 
 ## The prompt template 
 
-The `prompt.txt` file is a template from which we will build the instructions  for the LLM on each step.
+The `prompt.txt` file is a template from which we will build the instructions  for the LLM on each step of the 
+chat.
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
