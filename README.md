@@ -525,10 +525,12 @@ Calculator got errors: Error: parse error [1:6]: Expected )
 ***********
 ```
 
-The expression `(75 F - 32) * 5/9` is not valid, since `F` is not defined.
+The **Thought** `I need to convert from Fahrenheit to Celsius` is right but 
+the expression `(75 F - 32) * 5/9` used as `Action Input` is not valid, since `F` is not defined.
 
 ### 3
 
+Continue:
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
