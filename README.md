@@ -196,13 +196,14 @@ let prompt = promptTemplate.replace("${question}", question).replace(
 
 Then we want to iteratively:
 
-1. ask the LLM to give us an Action, that is to decide which tool to use (or no tool at all)
+1. ask the LLM to give us a thought, that is to decide which tool to use (or no tool at all)
    
    ```js
-   const action = await completePrompt(prompt);
-   prompt += action;
+    const response = await completePrompt(prompt);
+    prompt += response;
    ```
    Since the `prompt` ends with the `Thought` field, the LLM response is added as a `Tought`.
+   The LLM also has filled the `Action:` and `Action Input:` entries.
    We also need to determine the values for the `action` and the `actionInput` fields from the LLM response using regular expressions:
 
    ```js
