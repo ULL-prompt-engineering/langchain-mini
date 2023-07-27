@@ -139,7 +139,7 @@ If a search has failed, `error` will contain an error message. `search_metadata.
 ## The Calculator tool
 
 The most important thing about the calculator is that it has to provide an appropiate anwser to the LLM if there were 
-errors. That is why it ask the LLM `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`:
+errors. If there are errors, the returned string ask the LLM `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`:
 
 ``` js
 import { Parser } from "expr-eval";
