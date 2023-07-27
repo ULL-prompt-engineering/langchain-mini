@@ -8,7 +8,7 @@
     - [1](#1)
     - [2](#2)
     - [3](#3)
-    - [How can I help? "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
+    - [`How can I help?` "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
       - [1](#1-1)
       - [2](#2-1)
     - [How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
@@ -381,7 +381,7 @@ There are 404 five year periods in the current year.
 
 The answer is wrong since at the time of this wrinting the year is 2023, so we try again. This time we ask the LLM only for the current year, asking the LLM to be accurate:
 
-### How can I help? "What is the current year? Be accurate!"
+### `How can I help?` "What is the current year? Be accurate!"
 
 Whithout leaving the readline loop:
 
@@ -404,46 +404,48 @@ The **ReAct** loop starts again:
 
 #### 1
 
-As it is a follow up question, new fields now appear in the prompt template:
+As it is a follow up question, new fields now appear in the prompt template.
 
-1. the **Chat History** field that summarizes the conversation so far, having the format `Q: <question>\nA: <answer>\nQ: <question>\nA: <answer>\n...\n\n` with a new paragraph separating it to the rest of the prompt template. This text comes from the `merge.txt` template file:
+The **Chat History** field that summarizes the conversation so far, having the format `Q: <question>\nA: <answer>\nQ: <question>\nA: <answer>\n...\n\n` with a new paragraph separating it to the rest of the prompt template. 
+
+This text comes from the `merge.txt` template file:
    
-   ```
-    Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
-    Chat History:
-    ${history}
-    Follow Up Input: ${question}
-    Standalone question:
-   ```
-   and was computed by the function [mergeHistory](index.mjs#L111-L117):
+```
+Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+Chat History:
+${history}
+Follow Up Input: ${question}
+Standalone question:
+```
 
-   ```js
-    // merge the chat history with a new question
-    const mergeHistory = async (question, history) => {
-    const prompt = mergeTemplate
-        .replace("${question}", question)
-        .replace("${history}", history);
-    return await completePrompt(prompt);
-    };
-  ```
+and is computed by the function [mergeHistory](index.mjs#L111-L117):
 
-  The `history` variable is updated [on the `main` loop](/index.mjs#L119-L129):
+```js
+// merge the chat history with a new question
+const mergeHistory = async (question, history) => {
+const prompt = mergeTemplate
+    .replace("${question}", question)
+    .replace("${history}", history);
+return await completePrompt(prompt);
+};
+```
 
-  ```js
-    let history = "";
-    while (true) {
-    let question = await rl.question("How can I help? ");
-    if (history.length > 0) {
-        question = await mergeHistory(question, history);
-    }
-    const answer = await answerQuestion(question);
-    console.log(answer);
-    history += `Q:${question}\nA:${answer}\n`;
-    }
-  ```
+The `history` variable is updated [on the `main` loop](/index.mjs#L119-L129):
 
-2. the **Follow Up Input** and 
-3. the **Standalone question** field
+```js
+let history = "";
+while (true) {
+  let question = await rl.question("How can I help? ");
+  if (history.length > 0) {
+    question = await mergeHistory(question, history);
+  }
+  const answer = await answerQuestion(question);
+  console.log(answer);
+  history += `Q:${question}\nA:${answer}\n`;
+}
+```
+
+Another new field is the **Follow Up Input** containing the current question `What is the current year? Be accurate!` and the **Standalone question** field that is the question `What is the current year?` to be answered by the LLM.
 
 ```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
