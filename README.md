@@ -872,6 +872,7 @@ Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
 
 ## References
 
+* [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html) by [Colin Eberhardt](https://blog.scottlogic.com/ceberhardt)
 * The ReAct model was introduced by Google in [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629) (March of 2023)
 * [ReAct: Synergizing Reasoning and Acting in Language Models](https://www.promptingguide.ai/techniques/react)
 * [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering#react) GitHub repo
