@@ -874,6 +874,6 @@ Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
 
 * The ReAct model was introduced by Google in [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629) (March of 2023)
 * [ReAct: Synergizing Reasoning and Acting in Language Models](https://www.promptingguide.ai/techniques/react)
-* [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering) GitHub repo
-* [Model ReAct Knowledge Language](https://amatriain.net/blog/prompt201#react) Amatrian's blog post
-* [LangChain Agents Deep Dive with GPT 3.5 — LangChain #6](https://www.classcentral.com/course/youtube-langchain-agents-deep-dive-with-gpt-3-5-langchain-6-163666)
+* [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering#react) GitHub repo
+* [Model ReAct Knowledge Language](https://amatriain.net/blog/prompt201#react) Amatrian's blog post in "Prompt Engineering 201: Advanced methods and toolkits"
+* [LangChain Agents Deep Dive with GPT 3.5 — LangChain #6](https://www.classcentral.com/classroom/youtube-prompt-engineering-with-openai-s-gpt-3-and-other-llms-126224)  by James Briggs via [YouTube](https://www.youtube.com/watch?v=BP9fi_0XTlw)
