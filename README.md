@@ -445,6 +445,8 @@ while (true) {
 }
 ```
 
+This provides the app with **some form of memory**, so that the LLM can use the previous questions and answers to answer the current question.
+
 Another new field is the **Follow Up Input** containing the current question `What is the current year? Be accurate!` and the **Standalone question** field that is the question `What is the current year?` to be answered by the LLM.
 
 ```
