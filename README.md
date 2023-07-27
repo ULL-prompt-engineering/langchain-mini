@@ -404,7 +404,7 @@ The **ReAct** loop starts again:
 
 #### 1
 
-As it is a follow up question, new fields now appear in the prompt template.
+As it is a follow up question, new fields now appear in the instructions.
 
 The **Chat History** field that summarizes the conversation so far, having the format `Q: <question>\nA: <answer>\nQ: <question>\nA: <answer>\n...\n\n` with a new paragraph separating it to the rest of the prompt template. 
 
