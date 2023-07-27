@@ -423,10 +423,10 @@ and is computed by the function [mergeHistory](index.mjs#L111-L117):
 ```js
 // merge the chat history with a new question
 const mergeHistory = async (question, history) => {
-const prompt = mergeTemplate
+  const prompt = mergeTemplate
     .replace("${question}", question)
     .replace("${history}", history);
-return await completePrompt(prompt);
+  return await completePrompt(prompt);
 };
 ```
 
