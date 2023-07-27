@@ -11,7 +11,7 @@
     - [`How can I help?` "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
       - [1](#1-1)
       - [2](#2-1)
-    - [`How can I help?` "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
+    - [`How can I help?` "Try again. Think step by step. How many five year periods are in the current year? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
       - [1](#1-2)
   - [Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"](#tracing-what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
     - [1](#1-3)
@@ -532,7 +532,7 @@ The current year is 2023.
 
 Much better!. The **search** tool has found the correct anwser. 
 
-### `How can I help?` "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"
+### `How can I help?` "Try again. Think step by step. How many five year periods are in the current year? Be accurate!"
 
 Now we  reformulate the original question asking the LLM to think step by step and be accurate.
 
