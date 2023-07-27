@@ -447,7 +447,9 @@ while (true) {
 
 This provides the app with **some form of memory**, so that the LLM can use the previous questions and answers to answer the current question.
 
-Another new field is the **Follow Up Input** containing the current question `What is the current year? Be accurate!` and the **Standalone question** field that is the question `What is the current year?` to be answered by the LLM.
+Another new field is the **Follow Up Input** containing the current question `What is the current year? Be accurate!` and the **Standalone question** field[^1] that is the question `What is the current year?` to be answered by the LLM.
+
+[^1]: I find curious that we haven't given instructions about this field to the LLM but was filled by it from the **Follow Up Input**. Why is it so?
 
 ```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
