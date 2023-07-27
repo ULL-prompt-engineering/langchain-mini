@@ -404,8 +404,28 @@ The **ReAct** loop starts again:
 
 #### 1
 
-As it is a follow up question, now appears 
-1. the **Chat History** field, 
+As it is a follow up question, new fields now appear in the prompt template:
+
+1. the **Chat History** field that summarizes the conversation so far, having the format `Q: <question>\nA: <answer>\nQ: <question>\nA: <answer>\n...\n\n` with a new paragraph separating it to the rest of the prompt template. This text comes from the `merge.txt` template file:
+   
+   ```
+    Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+    Chat History:
+    ${history}
+    Follow Up Input: ${question}
+    Standalone question:
+   ```
+   and was computed by the function [mergeHistory](index.mjs#L111-L117):
+
+   ```js
+    // merge the chat history with a new question
+    const mergeHistory = async (question, history) => {
+    const prompt = mergeTemplate
+        .replace("${question}", question)
+        .replace("${history}", history);
+    return await completePrompt(prompt);
+    };
+  ```
 2. the **Follow Up Input** and 
 3. the **Standalone question** field
 
