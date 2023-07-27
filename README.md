@@ -380,6 +380,20 @@ The answer is wrong since at the time of this wrinting the year is 2023, so we t
 
 ### How can I help? "What is the current year? Be accurate!"
 
+Whithout leaving the readline loop, 
+
+```js
+while (true) {
+  let question = await rl.question("How can I help? ");
+  if (history.length > 0) {
+    question = await mergeHistory(question, history);
+  }
+  const answer = await answerQuestion(question);
+  console.log(answer);
+  history += `Q:${question}\nA:${answer}\n`;
+}
+```
+we ask the LLM again
 
 `How can I help?` **What is the current year? Be accurate!**
 
