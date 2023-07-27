@@ -804,8 +804,24 @@ Calculator answer: 23.88888888888889
 ***********
 ```
 
-The **Thought** `I need to change the expression` is right 
-and the expression `((75-32) * 5/9)` used as `Action Input` is valid.
+The **Thought** `I need to change the expression` is right and was the consequence of the returned value  
+`Please reformulate the expression. The calculator tool has failed ...` 
+inside the `catch` in the [calculator](/index.mjs#L32-L41) function code:
+
+```js
+const calculator = (input) => {
+  try {
+    let answer = Parser.evaluate(input).toString()
+    console.log(blue(`Calculator answer: ${answer}\n***********`));
+    return answer;
+  } catch (e) {    
+    console.log(blue(`Calculator got errors: ${e}\n***********`));
+    return `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`;
+  }
+}
+```
+
+Now the reformulated expression `((75-32) * 5/9)` used as `Action Input` is valid.
 
 ### 4
 
@@ -843,10 +859,12 @@ Observation: Please reformulate the expression. The calculator tool has failed w
 Thought: I need to change the expression
 Action: calculator
 Action Input: ((75-32) * 5/9)
-Observation: 23.88888888888889
+Observation: `23.88888888888889`
 
 Thought: I now know the final answer
 Final Answer: Yesterday's highest temperature in Santa Cruz de Tenerife was 23.89 Celsius.
 Yesterday's highest temperature in Santa Cruz de Tenerife was 23.89 Celsius.
 How can I help? 
 ```
+
+Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
