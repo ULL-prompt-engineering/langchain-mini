@@ -9,10 +9,13 @@
     - [2](#2)
     - [3](#3)
     - [How can I help? "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
+      - [1](#1-1)
+      - [2](#2-1)
     - [How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
+      - [1](#1-2)
   - [Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"](#tracing-what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
-    - [1](#1-1)
-    - [2](#2-1)
+    - [1](#1-3)
+    - [2](#2-2)
     - [3](#3-1)
     - [4](#4)
 
@@ -399,6 +402,13 @@ we ask the LLM again:
 
 The **ReAct** loop starts again:
 
+#### 1
+
+As it is a follow up question, now appears 
+1. the **Chat History** field, 
+2. the **Follow Up Input** and 
+3. the **Standalone question** field
+
 ```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 Chat History:
@@ -408,6 +418,8 @@ A:There are 404 five year periods in the current year.
 Follow Up Input: What is the current year? Be accurate!
 Standalone question:
  What is the current year?
+``` 
+```
 Answer the following questions as best you can. You have access to the following tools:
 
 search: a search engine. useful for when you need to answer questions about current events. input should be a search query.
@@ -423,7 +435,8 @@ Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer
 Final Answer: the final answer to the original input question
-
+```
+```
 Begin!
 
 Question:  What is the current year?
@@ -443,6 +456,8 @@ The LLM has decided to use the **search** tool. The input to the search tool is 
 
 The iteration continues:
 
+#### 2
+
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
@@ -459,7 +474,8 @@ Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer
 Final Answer: the final answer to the original input question
-
+```
+```
 Begin!
 
 Question:  What is the current year?
@@ -472,17 +488,18 @@ Final Answer: The current year is 2023.
 The current year is 2023.
 ```
 
-Better. 
+Much better!. 
 
 ### How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"
 
 Now we  reformulate the original question asking the LLM to think step by step and be accurate.
 
-```
-How can I help? Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!
-```
+
+`How can I help?` **Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!**
 
 The **ReAct** loop starts again:
+
+#### 1
 
 ```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
@@ -510,7 +527,8 @@ Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer
 Final Answer: the final answer to the original input question
-
+``` 
+```
 Begin!
 
 Question:  What is the total number of five year periods in the year 2023?
@@ -523,7 +541,12 @@ Calculator answer: 404.6
 ***********
 ```
 
-Notice the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year at this writing, 2023. Also, the `Thought: I need to calculate the amount of five year periods`. The LLM has decided to use the **calculator** tool. The input to the calculator is `2023/5`.
+Notice 
+
+1. the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year at this writing, 2023. Also, 
+2. the `Thought: I need to calculate the amount of five year periods`. 
+3. The LLM has decided to use the **calculator** tool. 
+4. The input to the calculator is `2023/5`.
 
 The iteration continues:
 
