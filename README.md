@@ -2,6 +2,7 @@
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [The Calculator tool](#the-calculator-tool)
   - [The prompt template](#the-prompt-template)
+  - [The Reason-Action (ReAct) loop](#the-reason-action-react-loop)
   - [Running / developing](#running--developing)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
     - [1](#1)
@@ -193,6 +194,8 @@ let prompt = promptTemplate.replace("${question}", question).replace(
       .join("\n")
   ).replace("${toolnames}", Object.keys(tools).join(","));
 ```
+
+## The Reason-Action (ReAct) loop
 
 Then we want to iteratively:
 
