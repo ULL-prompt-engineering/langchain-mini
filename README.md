@@ -426,6 +426,7 @@ As it is a follow up question, new fields now appear in the prompt template:
     return await completePrompt(prompt);
     };
   ```
+  
   The `history` is updated [on the `main` loop](/index.mjs#L119-L129):
 
   ```js
