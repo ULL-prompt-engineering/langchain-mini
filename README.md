@@ -383,7 +383,7 @@ The answer is wrong since at the time of this wrinting the year is 2023, so we t
 
 ### `How can I help?` "What is the current year? Be accurate!"
 
-Whithout leaving the readline loop:
+Whithout leaving the [main readline loop](/index.mjs#L119-L129):
 
 ```js
 while (true) {
