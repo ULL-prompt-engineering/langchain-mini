@@ -399,9 +399,11 @@ while (true) {
   history += `Q:${question}\nA:${answer}\n`;
 }
 ```
-we ask the LLM again:
+we (human) ask the app again:
 
-`How can I help?` **What is the current year? Be accurate!**
+```
+How can I help? What is the current year? Be accurate!
+```
 
 The **ReAct** loop starts again:
 
