@@ -756,8 +756,8 @@ Calculator got errors: Error: parse error [1:6]: Expected )
 ***********
 ```
 
-The **Thought** `I need to convert from Fahrenheit to Celsius` is right but 
-the expression `(75 F - 32) * 5/9` used as `Action Input` is not valid, since `F` is not defined.
+The **Thought** `I need to convert from Fahrenheit to Celsius` is right 
+**but the expression `(75 F - 32) * 5/9` used as `Action Input` is not valid**, since `F` is not defined.
 
 ### 3
 
@@ -804,7 +804,7 @@ Calculator answer: 23.88888888888889
 ***********
 ```
 
-The **Thought** `I need to change the expression` is right and is a the consequence of the returned value  
+The **Thought** field `I need to change the expression` is right and it is a the consequence of the returned value  
 `Please reformulate the expression. The calculator tool has failed ...` 
 inside the `catch` in the [calculator](/index.mjs#L32-L41) function code:
 
