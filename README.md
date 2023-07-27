@@ -804,7 +804,7 @@ Calculator answer: 23.88888888888889
 ***********
 ```
 
-The **Thought** `I need to change the expression` is right and was the consequence of the returned value  
+The **Thought** `I need to change the expression` is right and is a the consequence of the returned value  
 `Please reformulate the expression. The calculator tool has failed ...` 
 inside the `catch` in the [calculator](/index.mjs#L32-L41) function code:
 
