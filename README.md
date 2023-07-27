@@ -8,15 +8,17 @@
     - [1](#1)
     - [2](#2)
     - [3](#3)
-    - [`How can I help?` "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
+    - [4 `How can I help?` "What is the current year? Be accurate!"](#4-how-can-i-help-what-is-the-current-year-be-accurate)
       - [1](#1-1)
       - [2](#2-1)
-    - [`How can I help?` "Try again. Think step by step. How many five year periods are in the current year? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
+    - [5 `How can I help?` "Try again. Think step by step. How many five year periods are in the current year? Be accurate!"](#5-how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
       - [1](#1-2)
+      - [2](#2-2)
+      - [3](#3-1)
   - [Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"](#tracing-what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
     - [1](#1-3)
-    - [2](#2-2)
-    - [3](#3-1)
+    - [2](#2-3)
+    - [3](#3-2)
     - [4](#4)
   - [References](#references)
 
@@ -259,7 +261,7 @@ SERPAPI_API_KEY="..."
 ~~~
 
 
-##  Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
+## Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
 
 You can now run the chain:
 
@@ -382,7 +384,7 @@ There are 404 five year periods in the current year.
 
 The answer is wrong since at the time of this wrinting the year is 2023, so we try again. This time we ask the LLM only for the current year, asking the LLM to be accurate:
 
-### `How can I help?` "What is the current year? Be accurate!"
+### 4 `How can I help?` "What is the current year? Be accurate!"
 
 Whithout leaving the [main readline loop](/index.mjs#L119-L129):
 
@@ -533,7 +535,7 @@ The current year is 2023.
 
 Much better!. The **search** tool has found the correct anwser. 
 
-### `How can I help?` "Try again. Think step by step. How many five year periods are in the current year? Be accurate!"
+### 5 `How can I help?` "Try again. Think step by step. How many five year periods are in the current year? Be accurate!"
 
 Now we  reformulate the original question asking the LLM to think step by step and be accurate.
 
@@ -603,7 +605,9 @@ Notice
 4. The LLM has decided to use the **calculator** tool. 
 5. The input to the calculator is `2023/5`.
 
-The iteration continues:
+#### 2
+
+The iteration continues
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -639,6 +643,8 @@ Calculator answer: 405
 ``` 
 
 Notice the `Thought: I need to round up the number to the nearest whole number`. The LLM has decided to use the **calculator** tool. The input to the calculator is `ceil(404.6)` and the calculator output is `405`.
+
+#### 3
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -877,4 +883,4 @@ Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
 * [ReAct: Synergizing Reasoning and Acting in Language Models](https://www.promptingguide.ai/techniques/react)
 * [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering#react) GitHub repo
 * [Model ReAct Knowledge Language](https://amatriain.net/blog/prompt201#react) Amatrian's blog post in "Prompt Engineering 201: Advanced methods and toolkits"
-* [LangChain Agents Deep Dive with GPT 3.5 — LangChain #6](https://www.classcentral.com/classroom/youtube-prompt-engineering-with-openai-s-gpt-3-and-other-llms-126224)  by James Briggs via [YouTube](https://www.youtube.com/watch?v=BP9fi_0XTlw)
+* [Prompt Engineering with OpenAI's GPT-3 and other LLMs](https://www.classcentral.com/classroom/youtube-prompt-engineering-with-openai-s-gpt-3-and-other-llms-126224)  by James Briggs via [YouTube](https://www.youtube.com/watch?v=BP9fi_0XTlw)
