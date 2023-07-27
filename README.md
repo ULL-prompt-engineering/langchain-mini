@@ -3,14 +3,14 @@
   - [The Calculator tool](#the-calculator-tool)
   - [The prompt template](#the-prompt-template)
   - [The Reason-Action (ReAct) loop](#the-reason-action-react-loop)
-  - [Running / developing](#running--developing)
+  - [Setup](#setup)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
     - [1](#1)
     - [2](#2)
     - [3](#3)
     - [How can I help? "What is the current year? Be accurate!"](#how-can-i-help-what-is-the-current-year-be-accurate)
     - [How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"](#how-can-i-help-try-again-think-step-by-step-how-many-five-year-periods-are-in-the-current-year-be-accurate)
-  - [What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?](#what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
+  - [Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"](#tracing-what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
     - [1](#1-1)
     - [2](#2-1)
     - [3](#3-1)
@@ -239,8 +239,8 @@ Then we want to iteratively:
     } 
    ```
 
+## Setup
 
-## Running / developing 
 Install dependencies, and run (with node >= v18):
 
 ~~~
@@ -253,6 +253,7 @@ You'll need to have both an OpenAI and SerpApi keys. These can be supplied to th
 OPENAI_API_KEY="..."
 SERPAPI_API_KEY="..."
 ~~~
+
 
 ##  Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
 
@@ -577,7 +578,7 @@ Final Answer: 405
 405
 ```
 
-## What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?
+## Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"
 
 
 ### 1
