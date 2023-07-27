@@ -297,7 +297,8 @@ Action Input: (2020/5)
 Calculator answer: 404
 ***********
 ```
-Here is in the first step of the **ReAct** iteration. The LLM has thought about what to do, and has decided to use the **calculator** tool. The input to the calculator must be the current year divided by 5. But it wrongly assumed the year is 2022.
+Here is in the first step of the **ReAct** iteration. The LLM has thought about what to do, and has decided to use the **calculator** tool. The input to the calculator must be the current year divided by 5. But it wrongly assumed the year is 2020.
+At the time of this writing the year is 2023.
 
 ### 2
 
