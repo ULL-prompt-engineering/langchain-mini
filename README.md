@@ -381,7 +381,7 @@ The answer is wrong since at the time of this wrinting the year is 2023, so we t
 ### How can I help? "What is the current year? Be accurate!"
 
 
-How can I help? **What is the current year? Be accurate!**
+`How can I help?` **What is the current year? Be accurate!**
 
 The **ReAct** loop starts again:
 
