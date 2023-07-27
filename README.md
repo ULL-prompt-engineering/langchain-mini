@@ -585,10 +585,20 @@ Calculator answer: 404.6
 
 Notice 
 
-1. the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year at this writing, 2023. Also, 
-2. the `Thought: I need to calculate the amount of five year periods`. 
-3. The LLM has decided to use the **calculator** tool. 
-4. The input to the calculator is `2023/5`.
+1. The Chat History:
+   
+   ```
+   Chat History:
+    Q:How many five year periods are in the current year? Be accurate!
+    A:There are 404 five year periods in the current year.
+    Q: What is the current year?
+    A:The current year is 2023.
+   ```
+   It gives a lot of context to the LLM
+2. the `Question: What is the total number of five year periods in the year 2023?`: it correctly remembers the value of the current year at this writing, 2023. Also, 
+3. the `Thought: I need to calculate the amount of five year periods`. 
+4. The LLM has decided to use the **calculator** tool. 
+5. The input to the calculator is `2023/5`.
 
 The iteration continues:
 
