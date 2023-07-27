@@ -426,6 +426,21 @@ As it is a follow up question, new fields now appear in the prompt template:
     return await completePrompt(prompt);
     };
   ```
+  The `history` is updated [on the `main` loop](/index.mjs#L119-L129):
+
+  ```js
+    let history = "";
+    while (true) {
+    let question = await rl.question("How can I help? ");
+    if (history.length > 0) {
+        question = await mergeHistory(question, history);
+    }
+    const answer = await answerQuestion(question);
+    console.log(answer);
+    history += `Q:${question}\nA:${answer}\n`;
+    }
+  ```
+
 2. the **Follow Up Input** and 
 3. the **Standalone question** field
 
