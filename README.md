@@ -393,7 +393,7 @@ while (true) {
   history += `Q:${question}\nA:${answer}\n`;
 }
 ```
-we ask the LLM again
+we ask the LLM again:
 
 `How can I help?` **What is the current year? Be accurate!**
 
