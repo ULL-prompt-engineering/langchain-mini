@@ -530,7 +530,7 @@ Final Answer: The current year is 2023.
 The current year is 2023.
 ```
 
-Much better!. 
+Much better!. The **search** tool has found the correct anwser. 
 
 ### How can I help? "Try again. Think step by step. How many five year periods are in the **current year**? Be accurate!"
 
