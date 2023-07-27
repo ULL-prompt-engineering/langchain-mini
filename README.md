@@ -595,7 +595,7 @@ Calculator answer: 404.6
 
 Notice 
 
-1. The Chat History:
+1. The Chat History has grown:
    
    ```
    Chat History:
