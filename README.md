@@ -1,9 +1,9 @@
 - [🦜️🔗 LangChain-mini](#️-langchain-mini)
+  - [Setup](#setup)
   - [How the Google Search API works](#how-the-google-search-api-works)
   - [The Calculator tool](#the-calculator-tool)
   - [The prompt template](#the-prompt-template)
   - [The Reason-Action (ReAct) loop](#the-reason-action-react-loop)
-  - [Setup](#setup)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
     - [1](#1)
     - [2](#2)
@@ -43,8 +43,30 @@ This is not intended to be a replacement for LangChain, instead it was built for
 
 For more information about this project, read 
 
-1. The blogpost - [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html)
-2. [Prompt Engineering 101](https://github.com/ULL-prompt-engineering/prompt-engineering-101) tutorial
+1. [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html) by [Colin Eberhardt](https://blog.scottlogic.com/ceberhardt) (May 2023). This repo is a fork of [langchain-mini](https://github.com/ColinEberhardt/langchain-mini)
+2. [Prompt Engineering 101](https://github.com/ULL-prompt-engineering/prompt-engineering-101) tutorial. Ask the author for access.
+
+## Setup
+
+Install dependencies, and run (with node >= v18):
+
+```
+➜  langchain-mini git:(main) nvm use v20
+Now using node v20.5.0 (npm v9.8.0)
+```
+
+Install dependencies:
+
+~~~
+% npm install
+~~~
+
+You'll need to have both an OpenAI and SerpApi keys. These can be supplied to the application via a `.env` file:
+
+~~~
+OPENAI_API_KEY="..."
+SERPAPI_API_KEY="..."
+~~~
 
 ## How the Google Search API works
 
@@ -83,7 +105,7 @@ They also support [advanced search query parameters](https://www.google.com/supp
 * `as_eq`  excludes the specified terms from the search results. 
   * For example, to filter out results that contain the term `deprecated`, use `as_eq=deprecated`. 
 
-The [api-key](https://serpapi.com/search-api#api-parameters-serpapi-parameters-api-key) is also required and defines the **SerpApi** private key to use. That is why we the fetch request:
+The [api-key](https://serpapi.com/search-api#api-parameters-serpapi-parameters-api-key) is also required and defines the **SerpApi** private key to use. That is why we provide it in the fetch request:
 
 ```js 
 fetch(`https://serpapi.com/search?api_key=${process.env.SERPAPI_API_KEY}&q=${question}`);
@@ -245,20 +267,6 @@ Then we want to iteratively:
     } 
    ```
 
-## Setup
-
-Install dependencies, and run (with node >= v18):
-
-~~~
-% npm install
-~~~
-
-You'll need to have both an OpenAI and SerpApi keys. These can be supplied to the application via a `.env` file:
-
-~~~
-OPENAI_API_KEY="..."
-SERPAPI_API_KEY="..."
-~~~
 
 
 ## Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
