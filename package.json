@@ -15,6 +15,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "expr-eval": "^2.0.2",
-    "google-search-results-nodejs": "^2.1.0"
+    "google-search-results-nodejs": "^2.1.0",
+    "serpapi": "^2.0.0"
   }
 }

@@ -131,7 +131,7 @@ The JSON output result from `res.json()` includes structured data for
 * <a href="https://serpapi.com/shopping-results">shopping results</a>,
 *  <a href="https://serpapi.com/videos-results">video results</a>, and more.
   
-The code at [serpapi.mjs](serpapi.mjs) illustrates how to use the SerpApi to answer a simple question:
+The code at [serpapi/serpapi.mjs](serpapi/serpapi.mjs) illustrates how to use the SerpApi to answer a simple question:
 
 ```js
 import deb from "./deb.mjs";
@@ -158,7 +158,7 @@ Here is the (folded) output. Notice the field `snippet` of the first object in t
 
 ![serpapi](/images/serpapi.png)
 
-See the full output in file [serpapi-output.mjs](serpapi-output.mjs).
+See the full output in file [serpapi/serpapi-output.mjs](serpapi/serpapi-output.mjs).
 
 The code example does not deal with errors. 
 A search status is accessible through `search_metadata.status`. 

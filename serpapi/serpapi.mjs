@@ -1,6 +1,6 @@
-import deb from "./deb.mjs";
+import deb from "../deb.mjs";
 import env from "dotenv";
-env.config();
+env.config('../.env');
 const question = process.argv[2] || "What is the current year?";
 
 import SerpApi from 'google-search-results-nodejs';
