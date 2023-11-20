@@ -70,6 +70,8 @@ SERPAPI_API_KEY="..."
 
 ## How the Google Search API works
 
+To get a Google Search API key, you can sign in with your google or your GitHub accounts [SerpApi](https://serpapi.com/) account (You need to verify your email and your phone).
+
 Here is the function inside [index.mjs](index.mjs#L16-L30) that uses the SerpApi to answer a  question:
 
 ```js
