@@ -99,7 +99,7 @@ Consulting the [Google Search Engine Results API](https://serpapi.com/search-api
 
 We can also see that the `q` parameter is required and defines the query we want to search. 
 
-We can use anything that we would use in a regular Google search. e.g. `inurl:`, `site:`, `intitle:`. 
+You can use anything that you would use in a [regular Google search](/assets/google-search.md). e.g. `inurl:`, `site:`, `intitle:`. See the [full list](https://serpapi.com/advanced-google-query-parameters) of supported advanced search query parameters.
 
 They also support [advanced search query parameters](https://www.google.com/support/enterprise/static/gsa/docs/admin/current/gsa_doc_set/xml_reference/request_format.html) such as `as_dt` or `as_eq`
 
