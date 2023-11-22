@@ -99,7 +99,7 @@ Consulting the [Google Search Engine Results API](https://serpapi.com/search-api
 
 We can also see that the `q` parameter is required and defines the query we want to search. 
 
-You can use anything that you would use in a [regular Google search](/assets/google-search.md). e.g. `inurl:`, `site:`, `intitle:`. See the [full list](https://serpapi.com/advanced-google-query-parameters) of supported advanced search query parameters.
+You can use anything that you would use in a [regular Google search](/docs/google-search.md). e.g. `inurl:`, `site:`, `intitle:`. See the [full list](https://serpapi.com/advanced-google-query-parameters) of supported advanced search query parameters.
 
 They also support [advanced search query parameters](https://www.google.com/support/enterprise/static/gsa/docs/admin/current/gsa_doc_set/xml_reference/request_format.html) such as `as_dt` or `as_eq`
 
@@ -188,7 +188,7 @@ const calculator = (input) => {
 
 ## The prompt template 
 
-The `prompt.txt` file is a template from which we will build the instructions  for the LLM on each step of the 
+The `assets/templates/prompt.txt` file is a template from which we will build the instructions  for the LLM on each step of the 
 chat. The LLM answers to the previous questions are appended to the template as `Thought`s. The result of the call to the tools will be added to the template as `Observation`s.
 
 ```
@@ -425,7 +425,7 @@ As it is a follow up question, new fields now appear in the instructions.
 
 The **Chat History** field that summarizes the conversation so far, having the format `Q: <question>\nA: <answer>\nQ: <question>\nA: <answer>\n...\n\n` with a new paragraph separating it to the rest of the prompt template. 
 
-This text comes from the `merge.txt` template file:
+This text comes from the `assets/templates/merge.txt` template file:
    
 ```
 Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.

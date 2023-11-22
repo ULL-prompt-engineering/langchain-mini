@@ -10,3 +10,7 @@ If you include inurl: in your query, Google will restrict the results to documen
 The query `intitle:term` restricts results to documents containing `term` in the title. 
 
 <https://www.google.com/search?q=ayuda+intitle:escuela+site:ull.es>
+
+## Output
+
+See file [/docs/answer.json](/docs/answer.json)
