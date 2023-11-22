@@ -1,11 +1,13 @@
 import deb from "./deb.mjs";
 
+import pkg from 'template-file';
+const { render, renderFile } = pkg;
+
 import env from "dotenv";
 env.config();
 
 import fs from "fs";
 import { rl, red, green, blue, purple } from "./src/utils.mjs";
-
 
 const promptTemplate = fs.readFileSync("assets/templates/prompt.txt", "utf8");
 const mergeTemplate = fs.readFileSync("assets/templates/merge.txt", "utf8");
@@ -39,12 +41,13 @@ const completePrompt = async (prompt) =>
 
 const answerQuestion = async (question) => {
   // construct the prompt, with our question and the tools that the chain can use
-  let prompt = promptTemplate.replace("${question}", question).replace(
-    "${tools}",
-    Object.keys(tools)
-      .map(toolname => `${toolname}: ${tools[toolname].description}`)
-      .join("\n")
-  ).replace("${toolnames}", Object.keys(tools).join(","));
+  let prompt = render(promptTemplate, 
+    {
+      question, 
+      tools: Object.keys(tools).map(toolname => `${toolname}: ${tools[toolname].description}`).
+             join("\n"), 
+      toolnames: Object.keys(tools).join(",")
+    });
 
   // allow the LLM to iterate until it finds a final answer
   while (true) {
@@ -69,9 +72,7 @@ const answerQuestion = async (question) => {
 
 // merge the chat history with a new question
 const mergeHistory = async (question, history) => {
-  const prompt = mergeTemplate
-    .replaceAll("${question}", question)
-    .replaceAll("${history}", history);
+  const prompt = render(mergeTemplate, { question, history });
   return await completePrompt(prompt);
 };
 
