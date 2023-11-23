@@ -896,6 +896,15 @@ Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
 
 ## November 2023 OpenAI Update
 
+The [completion API](https://platform.openai.com/docs/api-reference/completions) that is used in this branch of the project is now labelled as `legacy`.
+
+The **Completion API** for a  given a prompt, makes the model to return 
+
+- one or more predicted completions along with 
+- the probabilities of alternative tokens at each position. 
+
+Most developer should use our [Chat Completions API](https://platform.openai.com/docs/guides/text-generation/text-generation-models) to leverage our best and newest models. Most models that support the legacy Completions endpoint [will be shut off on January 4th, 2024](https://platform.openai.com/docs/deprecations/).
+
 ```
 ➜  serpapi git:(dev) npm ls openai
 langchain-mini@1.0.0 /Users/casianorodriguezleon/campus-virtual/2223/learning/openai-learning/langchain-mini
@@ -910,6 +919,7 @@ Text generation models are now capable of
 A common way to use Chat Completions is to instruct the model to always return a JSON object that makes sense for your use case, by specifying this in the system message. While this does work in some cases, occasionally the models may generate output that does not parse to valid JSON objects.
 
 To prevent these errors and improve model performance, when calling 
+
 - `gpt-4-1106-preview` or 
 - `gpt-3.5-turbo-1106`, 
 
