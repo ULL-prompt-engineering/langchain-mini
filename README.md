@@ -58,7 +58,7 @@ While efforts have been made to ensure the accuracy and reliability of the AI ge
 All information is provided on an as-is basis. Nothing contained in the Course or the Course materials constitutes a solicitation, recommendation, or endorsement by the organizers of a particular AI model or AI generated content.
 
 Many parts of this course utilize ChatGPT's API, and if you exceed the free tier and you want to continue using the API, 
-an option is to provide a credit card to OpenAI to pay them for the use of the API.
+an option is to provide a credit card to OpenAI to pay them for the use of their API.
 
 ## Setup
 
