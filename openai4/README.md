@@ -1,3 +1,5 @@
+This folder contains examples of the OpenAI Chat Completions API.
+
 ## Chat Completions API
 
 The Chat Completions API is a general-purpose tool for building chatbots and dialogue systems.
