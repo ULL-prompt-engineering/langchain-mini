@@ -72,6 +72,17 @@ An example Chat Completions API response looks as follows:
 }
 ```
 
+Every response will include a `finish_reason`. The possible values for finish_reason are:
+
+- `stop`: API returned complete message, or a message terminated by one of the stop sequences provided via the [stop](https://platform.openai.com/docs/api-reference/chat/create#chat/create-stop) parameter
+- `length`: Incomplete model output due to [max_tokens](https://platform.openai.com/docs/api-reference/chat/create#chat/create-max_tokens) parameter or token limit
+- `function_call`: The model decided to call a function
+- `content_filter`: Omitted content due to a flag from OpenAI content filters
+- `null`: API response still in progress or incomplete
+
+Depending on input parameters, the model response may include different information.
+
+
 ## Prices
 
 The following paragraph has 35 words and 35 tokens:
