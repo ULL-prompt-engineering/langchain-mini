@@ -71,7 +71,7 @@ SERPAPI_API_KEY="..."
 
 ## How the Google Search API works
 
-See [/serpapi/README.md](/serpapi/README.md) for details.
+See the notes at [/serpapi/README.md](/serpapi/README.md) for details.
 
 ## The Calculator tool
 
@@ -195,6 +195,24 @@ We input our question `How many five year periods are in the current year? Be ac
 
 ### 1
 
+The initial prompt is:
+
+```
+How can I help? How many five year periods are in the current year? Be accurate!
+```
+The execution of
+```js
+let prompt = render(promptTemplate, 
+    {
+      question, 
+      tools: Object.keys(tools).map(toolname => `${toolname}: ${tools[toolname].description}`).
+             join("\n"), 
+      toolnames: Object.keys(tools).join(",")
+    });
+```
+
+renders:
+
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
@@ -205,31 +223,58 @@ Use the following format:
 
 Question: the input question you must answer
 Thought: you should always think about what to do
-Action: the action to take, should be one of [search]
+Action: the action to take, should be one of [search,calculator]
 Action Input: the input to the action
 Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final answer to the original input question
-``` 
+Thought: 
 ```
-Begin!
+Here we are in the first step of the **ReAct** iteration. 
 
-Question: How many five year periods are in the current year? Be accurate!
+The LLM has thought about what to do, and decides to use the **calculator** tool. 
+
+The input to the calculator must be the current year divided by 5. But it wrongly assumed the year is 2020.
+
+```
 Thought:
- I need to figure out the current year, and then calculate the number of five year periods
-Action: Calculator
-Action Input: (2020/5)
+ I need to do some basic math
+Action: calculator
+Action Input: 2020 / 5
+```
 
+Our agent reads the action from the `Action:` field and the input from the `Action Input:` field:
+
+```js
+const action = response.match(/Action: (.*)/)?.[1];
+    if (action) {
+      // execute the action specified by the LLMs
+      const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
+      console.log(blue(`Action: ${action.trim()}`));
+      console.log(blue(`Action Input: ${actionInput}`));
+```
+
+then calls the corresponding tool and fills the `Observation:` field with the result of the tool:
+
+```js
+      const result = await tools[action.trim().toLowerCase()].execute(actionInput);
+      prompt += `Observation: ${result}\n`;
+```
+
+As a consequence, the calculator tool echoes to the console:
+
+```
+Action: calculator
+Action Input: 2020 / 5
 Calculator answer: 404
 ***********
 ```
-Here is in the first step of the **ReAct** iteration. The LLM has thought about what to do, and has decided to use the **calculator** tool. The input to the calculator must be the current year divided by 5. But it wrongly assumed the year is 2020.
-At the time of this writing the year is 2023.
+
+But at the time of this writing the year is 2023!.
 
 ### 2
 
-Now it continues to the next step:
+Now it continues to the next step.
+
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
@@ -241,28 +286,22 @@ Use the following format:
 
 Question: the input question you must answer
 Thought: you should always think about what to do
-Action: the action to take, should be one of [search]
+Action: the action to take, should be one of [search,calculator]
 Action Input: the input to the action
 Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer
 Final Answer: the final answer to the original input question
-``` 
-```
+
 Begin!
 
 Question: How many five year periods are in the current year? Be accurate!
-Thought: I need to figure out the current year, and then calculate the number of five year periods
-Action: Calculator
-Action Input: (2020/5)
+Thought: I need to do some basic math
+Action: calculator
+Action Input: 2020 / 5
 Observation: 404
 
-Thought: I need to round up to the nearest whole number
-Action: Calculator
-Action Input: ceil(404)
-
-Calculator answer: 404
-***********
+Thought:
 ```
 
 Notice the `Thought: I need to round ...`. Has decided to round. The iteration continues:
@@ -330,7 +369,7 @@ The **ReAct** loop starts again:
 
 #### 1
 
-As it is a follow up question, new fields now appear in the instructions.
+As it is a "follow up" question, new fields now appear in the instructions.
 
 The **Chat History** field that summarizes the conversation so far, having the format `Q: <question>\nA: <answer>\nQ: <question>\nA: <answer>\n...\n\n` with a new paragraph separating it to the rest of the prompt template. 
 

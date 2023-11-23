@@ -18,7 +18,7 @@ Casiano Rodríguez León.
 Puedes contactar con él en la dirección de correo electrónico crguezl@ull.edu.es`
 ]
 
-const yourRole = 
+const systemRole = 
 `Eres un responsable de informar sobre la Universidad de La Laguna (ULL) en España. 
 Debes asesorar a los profesores y estudiantes de la universidad sobre dicha universidad.
 
@@ -31,11 +31,11 @@ Sistema de Garantía de Calidad (SGIC) y propone a la "Junta de Centro" la revis
 funciones de la Comisión de Calidad de Centro (CCC).
 
 `+
-ULLAssistantInfo[0]
-//ULLAssistantInfo.join("\n")
+//ULLAssistantInfo[0]
+ULLAssistantInfo.join("\n")
 
 export {
     userQuestion,
     ULLAssistantInfo,
-    yourRole
+    systemRole
 }
