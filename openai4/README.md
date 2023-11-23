@@ -44,6 +44,33 @@ Because the **models have no memory of past requests**, all relevant information
 
 If a conversation cannot fit within the model’s token limit, it will need to be shortened in some way.
 
+## Chat Completions response format
+
+An example Chat Completions API response looks as follows:
+
+```js
+> node openai4/example-1.mjs
+
+{
+  id: 'chatcmpl-8O6ym4bG1TK4S7iv4zjAdAVM34xP3',
+  object: 'chat.completion',
+  created: 1700757392,
+  model: 'gpt-3.5-turbo-0613',
+  choices: [
+    {
+      index: 0,
+      message: {
+        role: 'assistant',
+        content: 'El actual profesor coordinador de la asignatura "Procesadores de Lenguajes" es el profesor \n' +
+          'Casiano Rodríguez León. \n' +
+          'Puedes contactar con él en la dirección de correo electrónico crguezl@ull.edu.es'
+      },
+      finish_reason: 'stop'
+    }
+  ],
+  usage: { prompt_tokens: 491, completion_tokens: 54, total_tokens: 545 }
+}
+```
 
 ## Prices
 

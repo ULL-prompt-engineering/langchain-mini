@@ -1,5 +1,13 @@
+import { config } from "dotenv";
+import deb from "../src/deb.mjs";
+config('../.env');
+
 import OpenAI from "openai";
-const openai = new OpenAI();
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    timeout: 30 * 1000, // 30 seconds (default is 10 minutes)
+
+});
 
 import { systemRole, userQuestion, ULLAssistantInfo } from "./ull-info.mjs";
 //console.log(systemRole)
@@ -20,7 +28,7 @@ async function main() {
            // "gpt-4-0613",
            // "gpt-3.5-turbo-instruct", // Similar capabilities as text-davinci-003 but compatible with legacy Completions endpoint and not Chat Completions.
   });
-  console.log(completion.choices[0]);
+  console.log(deb(completion));
 }
 
 main();

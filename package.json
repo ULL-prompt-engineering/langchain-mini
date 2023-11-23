@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.mjs",
+    "ex1": "node openai4/example-1.mjs",
     "save": "git ci -am 'save'; git push"
   },
   "author": "",
