@@ -1,4 +1,4 @@
-import deb from "./deb.mjs";
+import deb from "./src/deb.mjs";
 
 import pkg from 'template-file';
 const { render, renderFile } = pkg;

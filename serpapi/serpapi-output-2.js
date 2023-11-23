@@ -1,4 +1,5 @@
-let example = {
+// Serpapi output to "Who is the president of Spain?"
+export const serpapiOutput = {
   search_metadata: {
     id: '655b4c7266440adf63214d48',
     status: 'Success',

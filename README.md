@@ -20,6 +20,7 @@
     - [2](#2-3)
     - [3](#3-2)
     - [4](#4)
+  - [November 2023 Update](#november-2023-update)
   - [References](#references)
 
 # 🦜️🔗 LangChain-mini 
@@ -892,6 +893,23 @@ How can I help?
 ```
 
 Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
+
+## November 2023 Update
+
+Text generation models are now capable of 
+
+- [JSON mode](https://platform.openai.com/docs/guides/text-generation/json-mode) and 
+- [Reproducible outputs](https://platform.openai.com/docs/guides/text-generation/reproducible-outputs). 
+
+A common way to use Chat Completions is to instruct the model to always return a JSON object that makes sense for your use case, by specifying this in the system message. While this does work in some cases, occasionally the models may generate output that does not parse to valid JSON objects.
+
+To prevent these errors and improve model performance, when calling 
+- `gpt-4-1106-preview` or 
+- `gpt-3.5-turbo-1106`, 
+
+you can set `response_format` to `{ "type": "json_object" }` to enable [JSON mode](https://platform.openai.com/docs/guides/text-generation/json-mode). 
+
+When **JSON mode** is enabled, **the model is constrained to only generate strings that parse into valid JSON object**.
 
 ## References
 

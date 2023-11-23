@@ -1,3 +1,4 @@
+// Serpapi output to "What is the current year?"
 export const serpapiOutput = {
   search_metadata: {
     id: '64c1063d2d5b12e59a3fd253',
