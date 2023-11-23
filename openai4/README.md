@@ -140,6 +140,30 @@ JSON mode will not guarantee the output matches any specific schema, only that i
 
 See [openai4/json-mode.mjs](openai4/json-mode.mjs) for an example.
 
+```
+➜  langchain-mini git:(main) node openai4/json-mode.mjs
+```
+```js
+{
+  id: 'chatcmpl-8OCBnLI7QLRH1Oehi0yZGfYLVIC2c',
+  object: 'chat.completion',
+  created: 1700777419,
+  model: 'gpt-3.5-turbo-1106',
+  choices: [
+    {
+      index: 0,
+      message: {
+        role: 'assistant',
+        content: '{\n  "winner": "Los Angeles Dodgers"\n}'
+      },
+      finish_reason: 'stop'
+    }
+  ],
+  usage: { prompt_tokens: 31, completion_tokens: 11, total_tokens: 42 },
+  system_fingerprint: 'fp_eeff13170a'
+}
+```
+
 ## Prices
 
 The following paragraph has 35 words and 35 tokens:
