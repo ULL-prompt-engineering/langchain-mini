@@ -1,6 +1,7 @@
-import deb from "../deb.mjs";
+import deb from "../src/deb.mjs";
 import env from "dotenv";
-env.config('../.env');
+env.config({ path: '../.env'});
+
 const question = process.argv[2] || "What is the current year?";
 
 import SerpApi from 'google-search-results-nodejs';
@@ -16,7 +17,7 @@ const params = {
   //device: It can be set to desktop (default) to use a regular browser, tablet to use a tablet browser (currently using iPads), or mobile to use a mobile browser.
   //safe: "Safe Search Flag",
   //start: "Pagination Offset", See https://serpapi.com/search-api#api-parameters-pagination. It skips the given number of results. It's used for pagination.
-  //api_key: "Your SERP API Key",  // https://serpapi.com/dashboard
+  api_key: process.env.SERPAPI_API_KEY // "Your SERP API Key https://serpapi.com/dashboard
   //tbm: "nws|isch|shop", "to be matched": parameter defines the type of search you want to do. Images, videos
   //tbs: "custom to be search criteria", // (to be searched) parameter defines advanced search parameters that aren't possible in the regular query field. (e.g., advanced search for patents, dates, news, videos, images, apps, or text contents).
   //async: true|false,   // allow async query
