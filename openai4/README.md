@@ -1,8 +1,36 @@
-This folder contains examples of the OpenAI Chat Completions API.
+## Chat Completions API 
 
-## Chat Completions API
+This folder contains examples of the [OpenAI Chat Completions API](https://platform.openai.com/docs/guides/text-generation/chat-completions-api)
 
-The Chat Completions API is a general-purpose tool for building chatbots and dialogue systems.
+
+## November 2023 OpenAI Update
+
+The [completion API](https://platform.openai.com/docs/api-reference/completions) that is used in the branch `main` of the project is now labelled as `legacy`.
+
+The legacy **Completion API** for a  given a prompt, makes the model to return 
+
+- one or more predicted completions along with 
+- the probabilities of alternative tokens at each position. 
+
+Most developer should use  
+
+- [Chat Completions API](https://platform.openai.com/docs/guides/text-generation/text-generation-models) 
+  - See <https://platform.openai.com/docs/guides/text-generation/chat-completions-api>
+
+Most models that support the legacy Completions endpoint [will be shut off on January 4th, 2024](https://platform.openai.com/docs/deprecations/).
+
+I have installed the `openai` package version `4.20.0`:
+
+```
+➜  serpapi git:(dev) npm ls openai
+langchain-mini@1.0.0 /Users/casianorodriguezleon/campus-virtual/2223/learning/openai-learning/langchain-mini
+└── openai@4.20.0
+```
+
+
+## Chat Completions API Introduction
+
+The [Chat Completions API](https://platform.openai.com/docs/guides/text-generation/chat-completions-api) is a general-purpose tool for building chatbots and dialogue systems.
 
 ```js
 const completion = await openai.chat.completions.create({
@@ -83,6 +111,24 @@ Every response will include a `finish_reason`. The possible values for finish_re
 - `null`: API response still in progress or incomplete
 
 Depending on input parameters, the model response may include different information.
+
+## JSON mode 
+
+Text generation models are now capable of 
+
+- [JSON mode](https://platform.openai.com/docs/guides/text-generation/json-mode) and 
+- [Reproducible outputs](https://platform.openai.com/docs/guides/text-generation/reproducible-outputs). 
+
+A common way to use Chat Completions is to instruct the model to always return a JSON object that makes sense for your use case, by specifying this in the system message. While this does work in some cases, occasionally the models may generate output that does not parse to valid JSON objects.
+
+To prevent these errors and improve model performance, when calling 
+
+- `gpt-4-1106-preview` or 
+- `gpt-3.5-turbo-1106`, 
+
+you can set `response_format` to `{ "type": "json_object" }` to enable [JSON mode](https://platform.openai.com/docs/guides/text-generation/json-mode). 
+
+When **JSON mode** is enabled, **the model is constrained to only generate strings that parse into valid JSON object**.
 
 
 ## Prices
