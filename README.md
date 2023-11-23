@@ -20,7 +20,7 @@
     - [2](#2-3)
     - [3](#3-2)
     - [4](#4)
-  - [November 2023 Update](#november-2023-update)
+  - [November 2023 OpenAI Update](#november-2023-openai-update)
   - [References](#references)
 
 # 🦜️🔗 LangChain-mini 
@@ -894,7 +894,13 @@ How can I help?
 
 Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
 
-## November 2023 Update
+## November 2023 OpenAI Update
+
+```
+➜  serpapi git:(dev) npm ls openai
+langchain-mini@1.0.0 /Users/casianorodriguezleon/campus-virtual/2223/learning/openai-learning/langchain-mini
+└── openai@4.20.0
+```
 
 Text generation models are now capable of 
 
