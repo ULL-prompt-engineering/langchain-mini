@@ -33,6 +33,7 @@ For example, you can
 - modify the **personality** of the assistant or 
 - provide specific instructions about how it should behave throughout the conversation.
 
+**Assistant messages** store previous assistant responses, **but can also be written by you to give examples of desired behavior**.
 
 ## Prices
 
@@ -50,7 +51,9 @@ See <https://openai.com/pricing>
 
 Here is an example of cost and usage:
 
-| Cost | Usage |
-| --- | --- |
+| Cost                          | Usage |
+| ---                           | --- |
 | ![](../images/usage-cost.png) | ![](../images/usage-activity.png) |
 
+
+It is a paymnet system based on tokens.

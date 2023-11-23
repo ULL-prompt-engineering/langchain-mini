@@ -31,8 +31,8 @@ Sistema de Garantía de Calidad (SGIC) y propone a la "Junta de Centro" la revis
 funciones de la Comisión de Calidad de Centro (CCC).
 
 `+
-//ULLAssistantInfo[0]
-ULLAssistantInfo.join("\n")
+ULLAssistantInfo[0]
+//ULLAssistantInfo.join("\n")
 
 export {
     userQuestion,
