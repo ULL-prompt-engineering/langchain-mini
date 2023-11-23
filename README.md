@@ -898,12 +898,19 @@ Notice the round of `23.88888888888889` to `23.89` in the LLM answer.
 
 The [completion API](https://platform.openai.com/docs/api-reference/completions) that is used in this branch of the project is now labelled as `legacy`.
 
-The **Completion API** for a  given a prompt, makes the model to return 
+The legacy **Completion API** for a  given a prompt, makes the model to return 
 
 - one or more predicted completions along with 
 - the probabilities of alternative tokens at each position. 
 
-Most developer should use our [Chat Completions API](https://platform.openai.com/docs/guides/text-generation/text-generation-models) to leverage our best and newest models. Most models that support the legacy Completions endpoint [will be shut off on January 4th, 2024](https://platform.openai.com/docs/deprecations/).
+Most developer should use  
+
+- [Chat Completions API](https://platform.openai.com/docs/guides/text-generation/text-generation-models) 
+  - See <https://platform.openai.com/docs/guides/text-generation/chat-completions-api>
+
+Most models that support the legacy Completions endpoint [will be shut off on January 4th, 2024](https://platform.openai.com/docs/deprecations/).
+
+I have installed the `openai` package version `4.20.0`:
 
 ```
 ➜  serpapi git:(dev) npm ls openai
@@ -926,6 +933,8 @@ To prevent these errors and improve model performance, when calling
 you can set `response_format` to `{ "type": "json_object" }` to enable [JSON mode](https://platform.openai.com/docs/guides/text-generation/json-mode). 
 
 When **JSON mode** is enabled, **the model is constrained to only generate strings that parse into valid JSON object**.
+
+
 
 ## References
 
