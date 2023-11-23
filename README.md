@@ -75,7 +75,7 @@ To get a Google Search API key, you can sign in with your google or your GitHub 
 
 [![/images/serpapi-sign-in.png](/images/serpapi-sign-in.png)](https://serpapi.com/) 
 
-Here is the function inside [index.mjs](index.mjs#L16-L30) that uses the SerpApi to answer a  question:
+Here is the function inside [/src/tools.mjs](/src/tools.mjs) that uses the SerpApi to answer a  question:
 
 ```js
 // use serpapi to answer the question
@@ -189,19 +189,19 @@ const calculator = (input) => {
 
 ## The prompt template 
 
-The `assets/templates/prompt.txt` file is a template from which we will build the instructions  for the LLM on each step of the 
+The [assets/templates/prompt.txt](/assets/templates/prompt.txt) file is a template from which we will build the instructions  for the LLM on each step of the 
 chat. The LLM answers to the previous questions are appended to the template as `Thought`s. The result of the call to the tools will be added to the template as `Observation`s.
 
 ```
 Answer the following questions as best you can. You have access to the following tools:
 
-${tools}
+{{tools}}
 
 Use the following format:
 
 Question: the input question you must answer
 Thought: you should always think about what to do
-Action: the action to take, should be one of [${toolnames}]
+Action: the action to take, should be one of [{{toolnames}}]
 Action Input: the input to the action
 Observation: the result of the action
 ... (this Thought/Action/Action Input/Observation can repeat N times)
@@ -210,7 +210,7 @@ Final Answer: the final answer to the original input question
 
 Begin!
 
-Question: ${question}
+Question: {{question}}
 Thought:
 ```
 
@@ -220,12 +220,15 @@ The template is first filled inside the function `answerQuestion` with the infor
 and the available `tools`:
 
 ```js
-let prompt = promptTemplate.replace("${question}", question).replace(
-    "${tools}",
-    Object.keys(tools)
-      .map((toolname) => `${toolname}: ${tools[toolname].description}`)
-      .join("\n")
-  ).replace("${toolnames}", Object.keys(tools).join(","));
+const promptTemplate = fs.readFileSync("assets/templates/prompt.txt", "utf8");
+/* ... */
+let prompt = render(promptTemplate, 
+    {
+      question, 
+      tools: Object.keys(tools).map(toolname => `${toolname}: ${tools[toolname].description}`).
+             join("\n"), 
+      toolnames: Object.keys(tools).join(",")
+    });
 ```
 
 ## The Reason-Action (ReAct) loop
@@ -271,8 +274,6 @@ Then we want to iteratively:
       return response.match(/Final Answer: (.*)/)?.[1]; // The text after the colon
     } 
    ```
-
-
 
 ## Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
 
