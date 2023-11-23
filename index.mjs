@@ -15,29 +15,7 @@ const mergeTemplate = fs.readFileSync("assets/templates/merge.txt", "utf8");
 import { tools } from "./src/tools.mjs";
 
 // use GPT-3.5 to complete a given prompts
-const completePrompt = async (prompt) =>
-  await fetch("https://api.openai.com/v1/completions", { // https://platform.openai.com/docs/api-reference/chat/create
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + process.env.OPENAI_API_KEY,
-    },
-    body: JSON.stringify({
-      model: "text-davinci-003",
-      prompt,
-      max_tokens: 256,
-      temperature: 0.7,
-      stream: false,
-      stop: ["Observation:"],
-    }),
-  })
-    .then((res) => res.json())
-    .then((res) => res.choices[0].text)
-    .then((res) => {
-      console.log(red(prompt));
-      console.log(green(res));
-      return res;
-    });
+import completePrompt from "./src/ask-chatgpt.mjs";
 
 const answerQuestion = async (question) => {
   // construct the prompt, with our question and the tools that the chain can use
