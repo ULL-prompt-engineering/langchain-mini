@@ -22,7 +22,7 @@ async function main() {
     model: "gpt-3.5-turbo-1106",
     response_format: { type: "json_object" },
   });
-  console.log(completion.choices[0].message.content); // { "winner": "Los Angeles Dodgers", "year": 2020 }
+  console.log(deb(completion)); // { "winner": "Los Angeles Dodgers", "year": 2020 }
 }
 
 main();
