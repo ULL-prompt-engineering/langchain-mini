@@ -1,4 +1,102 @@
-## Execution od example serpapi.mjs
+## How the Google Search API works
+
+To get a Google Search API key, you can sign in with your google or your GitHub accounts [SerpApi](https://serpapi.com/) account (You need to verify your email and your phone).
+
+[![/images/serpapi-sign-in.png](/images/serpapi-sign-in.png)](https://serpapi.com/) 
+
+Here is the function inside [/src/tools.mjs](/src/tools.mjs) that uses the SerpApi to answer a  question:
+
+```js
+// use serpapi to answer the question
+const googleSearch = async (question) => {
+  console.log(purple(`Google search question: ${question}\n***********`));
+
+  let answer = await fetch(
+    `https://serpapi.com/search?api_key=${process.env.SERPAPI_API_KEY}&q=${question}`
+  ).then((res) => res.json()).then(
+      (res) =>
+        // try to pull the answer from various components of the response
+        res.answer_box?.answer ||
+        res.answer_box?.snippet ||
+        res.organic_results?.[0]?.snippet
+    );
+  console.log(purple(`Google search answer: ${answer}\n***********`));
+  return answer;
+}
+```
+
+Consulting the [Google Search Engine Results API](https://serpapi.com/search-api) we can see that the `/search` API endpoint allows us to scrape the results from Google search engine via our SerpApi service. 
+
+We can also see that the `q` parameter is required and defines the query we want to search. 
+
+You can use anything that you would use in a [regular Google search](/docs/google-search.md). e.g. `inurl:`, `site:`, `intitle:`. See the [full list](https://serpapi.com/advanced-google-query-parameters) of supported advanced search query parameters.
+
+They also support [advanced search query parameters](https://www.google.com/support/enterprise/static/gsa/docs/admin/current/gsa_doc_set/xml_reference/request_format.html) such as `as_dt` or `as_eq`
+
+* `as_dt` modifies the `as_sitesearch` parameter 
+  * `i`: Include only results in the web directory specified by `as_sitesearch`
+  * `e`: Exclude all results in the web directory specified by `as_sitesearch`. For example, to exclude results, use `as_dt=e`.
+* `as_eq`  excludes the specified terms from the search results. 
+  * For example, to filter out results that contain the term `deprecated`, use `as_eq=deprecated`. 
+
+The [api-key](https://serpapi.com/search-api#api-parameters-serpapi-parameters-api-key) is also required and defines the **SerpApi** private key to use. That is why we provide it in the fetch request:
+
+```js 
+fetch(`https://serpapi.com/search?api_key=${process.env.SERPAPI_API_KEY}&q=${question}`);
+```
+
+makes an HTTP GET request to the SERP API (Search Engine Results Page API) provided by `serpapi.com`. 
+
+See the [full list](https://serpapi.com/advanced-google-query-parameters) of supported advanced search query parameters.
+
+The JSON output result from `res.json()` includes structured data for 
+
+* <a href="https://serpapi.com/organic-results">organic results</a> Google search main results are called organic results. Is an array. For each organic result, we are able to extract its `snippet` `answers` and more. 
+* <a href="https://serpapi.com/local-pack">local results</a>, 
+* <a href="https://serpapi.com/google-ads">ad results</a>, 
+* the <a href="https://serpapi.com/knowledge-graph">knowledge graph</a>,
+* <a href="https://serpapi.com/direct-answer-box-api">direct answer boxes</a>, 
+* <a href="https://serpapi.com/images-results">images results</a>, 
+* <a href="https://serpapi.com/news-results">news results</a>, 
+* <a href="https://serpapi.com/shopping-results">shopping results</a>,
+*  <a href="https://serpapi.com/videos-results">video results</a>, and more.
+  
+The code at [serpapi/serpapi.mjs](serpapi/serpapi.mjs) illustrates how to use the SerpApi to answer a simple question:
+
+```js
+import deb from "./deb.mjs";
+import env from "dotenv";
+env.config();
+
+import SerpApi from 'google-search-results-nodejs';
+const search = new SerpApi.GoogleSearch(process.env.SERPAPI_API_KEY);
+
+const params = {
+  q: "What is the current year?",
+  hl: "en",
+  gl: "us",
+  num: 1, // ask for only one result
+};
+
+const callback = function(data) {
+  console.log(deb(data)); 
+};
+
+ssearch.json(params, callback); 
+```
+Here is the (folded) output. Notice the field `snippet` of the first object in the array `organic_results`:
+
+![serpapi](/images/serpapi.png)
+
+See the full output in file [serpapi/serpapi-output.mjs](serpapi/serpapi-output.mjs).
+
+The code example does not deal with errors. 
+A search status is accessible through `search_metadata.status`. 
+It flows this way: `Processing` -> `Success` || `Error`. 
+If a search has failed, `error` will contain an error message. `search_metadata.id` is the search ID inside SerpApi.
+
+
+## Execution of example serpapi.mjs
 
 The question is: `What is the current year?`
 
