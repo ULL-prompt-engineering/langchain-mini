@@ -53,11 +53,6 @@ const answerQuestion = async (question) => {
   }
 };
 
-// merge the chat history with a new question
-const mergeHistory = async (question, history) => {
-  const prompt = render(mergeTemplate, { question, history });
-  return await completePrompt(prompt);
-};
 
 // main loop - answer the user's questions
 let history = "";
@@ -66,9 +61,13 @@ while (true) {
   if (!question.length) process.exit(0);
 
   if (history.length > 0) {
-    question = await mergeHistory(question, history);
+    // merge the chat history with a new question
+    let historyAndQuestion = render(mergeTemplate, { question, history })
+    question = await completePrompt(historyAndQuestion);
+    console.log(purple(historyAndQuestion));
+    console.log(purple(question));
   }
   const answer = await answerQuestion(question);
   console.log(answer);
-  history += `Q:${question}\nA:${answer}\n`;
+  history += `  - Question: "${question}"\n  - Answer: "${answer}"\n`;
 }
