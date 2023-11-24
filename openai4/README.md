@@ -1,3 +1,11 @@
+- [Chat Completions API](#chat-completions-api)
+- [November 2023 OpenAI Update](#november-2023-openai-update)
+- [Chat Completions API Introduction](#chat-completions-api-introduction)
+- [Chat Completions response format](#chat-completions-response-format)
+- [JSON mode](#json-mode)
+- [Prices](#prices)
+- [References](#references)
+
 ## Chat Completions API 
 
 This folder contains examples of the [OpenAI Chat Completions API](https://platform.openai.com/docs/guides/text-generation/chat-completions-api)
