@@ -32,7 +32,7 @@ export default async (prompt) => {
         // The returned text will not contain the stop sequence. Defaults to null
         n: 1, // integer. Optional. Defaults to 1
     });
-    console.log(green(deb(completion)));
+    //console.log(green(deb(completion)));
     let res = completion.choices[0].message.content;
     console.log(green(res));
     return res;
