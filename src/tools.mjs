@@ -20,10 +20,10 @@ const googleSearch = async (question) => {
   const calculator = (input) => {
     try {
       let answer = Parser.evaluate(input).toString()
-      console.log(blue(`Calculator answer: ${answer}\n***********`));
+      console.log(purple(`Calculator answer: ${answer}\n***********`));
       return answer;
     } catch (e) {    
-      console.log(blue(`Calculator got errors: ${e}\n***********`));
+      console.log(purple(`Calculator got errors: ${e}\n***********`));
       return `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`;
     }
   }

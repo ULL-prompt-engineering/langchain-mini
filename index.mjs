@@ -7,6 +7,7 @@ import env from "dotenv";
 env.config();
 
 import fs from "fs";
+
 import { rl, red, green, blue, purple } from "./src/utils.mjs";
 
 const promptTemplate = fs.readFileSync("assets/templates/prompt.txt", "utf8");
@@ -26,6 +27,7 @@ const answerQuestion = async (question) => {
              join("\n"), 
       toolnames: Object.keys(tools).join(",")
     });
+  console.log(red(prompt));
 
   // allow the LLM to iterate until it finds a final answer
   while (true) {
@@ -35,13 +37,16 @@ const answerQuestion = async (question) => {
     prompt += response;
 
     const action = response.match(/Action: (.*)/)?.[1];
+    console.log(`New prompt with the answer of the LLM:\n`)
+    console.log(red(prompt));
+
     if (action) {
       // execute the action specified by the LLMs
       const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
-      console.log(blue(`Action: ${action.trim()}`));
-      console.log(blue(`Action Input: ${actionInput}`));
+      console.log(`Going to execute the tool `+
+           blue(`${action.trim()}(${deb(actionInput)})`));
       const result = await tools[action.trim().toLowerCase()].execute(actionInput);
-      prompt += `Observation: ${result}\n`;
+      prompt += `Observation: ${result}\n`
     } else {
       return response.match(/Final Answer: (.*)/)?.[1];
     }
