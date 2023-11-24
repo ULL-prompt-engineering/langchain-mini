@@ -158,7 +158,7 @@ Important notes:
   }
   ```
   which outputs:
-  ```json
+  ```js
   {
     error: 'There was no World Series in 2020 due to the COVID-19 pandemic.'
   }
