@@ -119,7 +119,7 @@ Text generation models are now capable of
 - [JSON mode](https://platform.openai.com/docs/guides/text-generation/json-mode) and 
 - [Reproducible outputs](https://platform.openai.com/docs/guides/text-generation/reproducible-outputs). 
 
-A common way to use Chat Completions is to instruct the model to always return a JSON object that makes sense for your use case, by specifying this in the system message. While this does work in some cases, occasionally the models may generate output that does not parse to valid JSON objects.
+A common way to use Chat Completions is to instruct the model **to always return a JSON object** that makes sense for your use case, by specifying this in the **system message**. While this does work in some cases, occasionally the models may generate output that does not parse to valid JSON objects.
 
 To prevent these errors and improve model performance, when calling 
 
@@ -130,13 +130,42 @@ you can set `response_format` to `{ "type": "json_object" }` to enable [JSON mod
 
 When **JSON mode** is enabled, **the model is constrained to only generate strings that parse into valid JSON object**.
 
+```js
+const completion = await openai.chat.completions.create({
+    messages: [
+      {
+        role: "system",
+        content: "You are a helpful assistant designed to output JSON.",
+      },
+      { role: "user", content: "Who won the world series in 2020?" },
+    ],
+    model: "gpt-3.5-turbo-1106",
+    response_format: { type: "json_object" },
+  });
+```
+
 Important notes:
 
-- When using JSON mode, always instruct the model to produce JSON via some message in the conversation, 
-for example via your system message. If you don't include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don't forget, the API will throw an error if the string `"JSON"` does not appear somewhere in the context.
-
-- The JSON in the message the model returns may be partial (i.e. cut off) if `finish_reason` is `length`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the token limit. To guard against this, check `finish_reason` before parsing the response.
+- When using JSON mode, always instruct the model to produce JSON via some message in the conversation, for example via your **system message**[^1]. 
+- The JSON in the message the model returns may be partial (i.e. cut off) if `finish_reason` is `length`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the token limit. To guard against this, check `finish_reason` before parsing the response:
+  
+  ```js
+  let firstMessage = completion.choices[0];
+  if (firstMessage.finish_reason === "stop") {
+    console.log(JSON.parse(firstMessage.message.content));
+  } else {
+    console.log(`The completion did not finish due to timeout: ${deb(completion)}`);
+  }
+  ```
+  which outputs:
+  ```json
+  {
+    error: 'There was no World Series in 2020 due to the COVID-19 pandemic.'
+  }
+  ```
 JSON mode will not guarantee the output matches any specific schema, only that it is valid and parses without errors.
+
+[^1]: If you don't include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don't forget, the API will throw an error if the string `"JSON"` does not appear somewhere in the context.
 
 See [openai4/json-mode.mjs](openai4/json-mode.mjs) for an example.
 
@@ -186,3 +215,7 @@ Here is an example of cost and usage:
 
 
 It is a paymnet system based on tokens.
+
+## References
+
+* Integrate OpenAI Assistants into your Web App (Tutorial): <https://youtu.be/lTF43_-TjbQ?si=HcK46HA9wxQYps70>
