@@ -15,7 +15,7 @@ const mergeTemplate = fs.readFileSync("assets/templates/merge.txt", "utf8");
 
 import { tools } from "./src/tools.mjs";
 
-// use GPT-3.5 to complete a given prompts
+// use gpt-3.5-turbo to complete a given prompts
 import completePrompt from "./src/ask-chatgpt.mjs";
 
 const answerQuestion = async (question) => {
@@ -32,13 +32,14 @@ const answerQuestion = async (question) => {
   // allow the LLM to iterate until it finds a final answer
   while (true) {
     const response = await completePrompt(prompt);
-
+    console.log(green(response));
+    
     // add this to the prompt
     prompt += response;
 
     const action = response.match(/Action: (.*)/)?.[1];
-    console.log(`New prompt with the answer of the LLM:\n`)
-    console.log(red(prompt));
+    //console.log(`New prompt with the answer of the LLM:\n`)
+    //console.log(red(prompt));
 
     if (action) {
       // execute the action specified by the LLMs
@@ -56,6 +57,7 @@ const answerQuestion = async (question) => {
 
 // main loop - answer the user's questions
 let history = "";
+let skip = false;
 while (true) {
   let question = await rl.question("How can I help? ");
   if (!question.length) process.exit(0);
@@ -66,8 +68,9 @@ while (true) {
     question = await completePrompt(historyAndQuestion);
     console.log(purple(historyAndQuestion));
     console.log(purple(question));
+    question = question.match(/newQuestion: (.*)/)?.[1];
   }
   const answer = await answerQuestion(question);
   console.log(answer);
-  history += `  - Question: "${question}"\n  - Answer: "${answer}"\n`;
+  history += `- Your answer to question: "${question}" was "${answer}"\n`;
 }

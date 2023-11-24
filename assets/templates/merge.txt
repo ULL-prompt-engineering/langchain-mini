@@ -1,6 +1,16 @@
-Given the following conversation and a follow up question, 
-rephrase the follow up question to be a standalone question.
-Chat History:
+Assuming we know the following facts:
+
 {{history}}
-Follow Up Input: {{question}}
-Standalone question:
+
+and that you have to answer the `question`: "{{question}}"
+
+Reformulate the `question` or even give the answer if you can deduce it 
+from the previous facts.
+
+Use the following format for your output:
+
+newQuestion: "Your reformulated question"
+
+If you have found the answer inside the history use the format:
+
+newQuestion: "The answer is in the history"

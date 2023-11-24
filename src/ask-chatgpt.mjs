@@ -34,7 +34,7 @@ export default async (prompt) => {
     });
     //console.log(green(deb(completion)));
     let res = completion.choices[0].message.content;
-    console.log(green(res));
+    //console.log(green(res));
     return res;
 }
 
