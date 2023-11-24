@@ -178,7 +178,7 @@ JSON mode will not guarantee the output matches any specific [schema](https://js
 [^2]: JSON Schema is a declarative language that you can use to annotate and validate the structure, constraints, and data types of your JSON documents. It provides a way to standardize and define expectations for your JSON data. See
 <https://json-schema.org/overview/what-is-jsonschema>
 
-See the code at [/openai4/json-mode.mjs](/openai4/json-mode.mjs) for an example. Follows an execution:
+See the code at [/openai4/json-mode.mjs](/openai4/json-mode.mjs) for an example. [^3]:
 
 ```
 ➜  langchain-mini git:(main) node openai4/json-mode.mjs
@@ -203,6 +203,7 @@ See the code at [/openai4/json-mode.mjs](/openai4/json-mode.mjs) for an example.
   system_fingerprint: 'fp_eeff13170a'
 }
 ```
+[^3]: The Los Angeles Dodgers won the 2020 World Series after beating the Tampa Bay Rays 4–2 on October 27, 2020, at Globe Life Field in Arlington, Texas. The COVID-19 pandemic shortened the 2020 MLB season to only 60 games.
 
 ## Prices
 
