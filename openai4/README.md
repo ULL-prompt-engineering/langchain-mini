@@ -163,7 +163,7 @@ Important notes:
     error: 'There was no World Series in 2020 due to the COVID-19 pandemic.'
   }
   ```
-JSON mode will not guarantee the output matches any specific schema[^2], only that it is valid and parses without errors.
+JSON mode will not guarantee the output matches any specific [schema](https://json-schema.org/overview/what-is-jsonschema)[^2], only that it is valid and parses without errors.
 
 [^1]: If you don't include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don't forget, the API will throw an error if the string `"JSON"` does not appear somewhere in the context.
 
