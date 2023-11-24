@@ -170,7 +170,7 @@ JSON mode will not guarantee the output matches any specific [schema](https://js
 [^2]: JSON Schema is a declarative language that you can use to annotate and validate the structure, constraints, and data types of your JSON documents. It provides a way to standardize and define expectations for your JSON data. See
 <https://json-schema.org/overview/what-is-jsonschema>
 
-See [openai4/json-mode.mjs](openai4/json-mode.mjs) for an example.
+See the code at [openai4/json-mode.mjs](openai4/json-mode.mjs) for an example. Follows an execution example:
 
 ```
 ➜  langchain-mini git:(main) node openai4/json-mode.mjs
