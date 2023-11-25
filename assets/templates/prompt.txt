@@ -9,7 +9,7 @@ Plan: you should ellaborate a plan of what to do according to the current knowle
 Action: the action to take, should be one of [{{toolnames}}]
 Action Input: the input to the action
 Observation: the result of the action
-... (this Thought/Action/Action Input/Observation can repeat N times)
+... (this Plan/Action/Action Input/Observation can repeat N times)
 Thought: I now know the final answer
 Final Answer: when you are sure you know the final answer, fill it with the final answer to the original input question
 
