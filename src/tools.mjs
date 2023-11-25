@@ -31,12 +31,12 @@ const googleSearch = async (question) => {
   const tools = {
     search: {
       description:
-        "a search engine. useful for when you need to answer questions about current events. input should be a search query.",
+        "A search engine. Useful for when you need to answer questions about current events. Input should be a search query.",
       execute: googleSearch,
     },
     calculator: {
       description:
-        "Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.",
+        "Useful for getting the result of a numeric math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.",
       execute: calculator,
     },
   };
