@@ -59,7 +59,7 @@ const answerQuestion = async (question) => {
 
 
 // main loop - answer the user's questions
-let history = "";
+let history = ``;
 let skip = false;
 while (true) {
   let question = await rl.question("How can I help? ");
@@ -68,10 +68,14 @@ while (true) {
   if (history.length > 0) {
     // merge the chat history with a new question
     let historyAndQuestion = render(mergeTemplate, { question, history })
-    question = await completePrompt(historyAndQuestion);
+    let newQuestion = await completePrompt(historyAndQuestion);
     console.log(purple(historyAndQuestion));
-    console.log(purple(question));
-    question = question.match(/newQuestion: (.*)/)?.[1];
+    console.log(purple(newQuestion));
+    newQuestion = newQuestion.match(/newQuestion:\s*(.*)/)?.[1];
+    console.log(purple(`New question: ${deb(newQuestion)}`));
+    if (newQuestion) {
+      question = newQuestion;
+    }
   }
   if (question) {
     const answer = await answerQuestion(question);
