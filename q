@@ -1,10 +1,12 @@
 Name of the current president of Spain
+Who is the current president of Spain
+
 What is the square root of the age of the wife of the president of Spain?
+What is the name of the wife of the president of Spain?
 
---------------------
+Name of the current president of Poland
+Who is the current president of Poland
 
-Thought: you should always think about what to do
+What is the square root of the age of the wife of the president of Poland?
+What is the name of the wife of the president of Poland?
 
-Thought: I need to find the age of the president's wife as well as calculate its square root
-
-Thought: I now need to calculate the square root

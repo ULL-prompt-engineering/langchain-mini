@@ -1,8 +1,8 @@
 # Tracing a Chat
 
 ```
-➜  langchain-mini git:(main) ✗ node index.mjs
-How can I help? Name of the current president of Spain
+➜  langchain-mini git:(main) ✗ node index.mjs 
+How can I help? Name of the current president of Poland
 Answer the following questions as best you can. You have access to the following tools:
 
 search: A search engine. Useful for when you need to answer questions about current events. Input should be a search query.
@@ -21,71 +21,35 @@ Final Answer: when you are sure you know the final answer, fill it with the fina
 
 Begin!
 
-Question: Name of the current president of Spain
+Question: Name of the current president of Poland
 
-Plan: Search for the name of the current president of Spain.
+Plan: Search for the current president of Poland
 
-Action: Search
-Action Input: "current president of Spain"
+Action: search
+Action Input: "current president of Poland"
 
-Going to execute the tool Search('current president of Spain"')
-Google search question: current president of Spain"
+Going to execute the tool search('current president of Poland"')
+Google search question: current president of Poland"
 ***********
-Google search answer: Pedro Sánchez
+> Google search answer: Andrzej Duda
 ***********
-Thought: The current president of Spain is Pedro Sánchez.
-Final Answer: Pedro Sánchez
-Pedro Sánchez
-```
-
-Now we ask the LLM again a similar question:
-
-```
-How can I help? Who is the current president of Spain
+Thought: The current president of Poland is Andrzej Duda.
+Final Answer: Andrzej Duda
+Andrzej Duda
+How can I help? What is the name of the wife of the president of Poland?
 Assuming we know the following facts:
 
-- Your answer to question: "Name of the current president of Spain" was "Pedro Sánchez"
+- Your answer to question: "Name of the current president of Poland" was "Andrzej Duda"
 
 
-and that you have to answer the `question`: "Who is the current president of Spain"
+and that you have to answer the `question`: "What is the name of the wife of the president of Poland?"
+Reformulate the `question`. Use the following format for your output:
 
-Reformulate the `question` or even give the answer if you can deduce it 
-from the previous facts.
-
-Use the following format for your output:
-
-newQuestion: "Your reformulated question"
-
-Or if you have found the answer inside the history use the format:
-
-Final Answer: "The answer is in the history and is '<interpolate here what you have found>'"
-
-Final Answer: "The answer is in the history and is 'Pedro Sánchez'"
-```
-
-So, it has been able to deduce the answer from the previous facts.
-
-```
-How can I help? What is the name of the wife of the president of Spain?
-Assuming we know the following facts:
-
-- Your answer to question: "Name of the current president of Spain" was "Pedro Sánchez"
+newQuestion: Your reformulated question
 
 
-and that you have to answer the `question`: "What is the name of the wife of the president of Spain?"
-
-Reformulate the `question` or even give the answer if you can deduce it 
-from the previous facts.
-
-Use the following format for your output:
-
-newQuestion: "Your reformulated question"
-
-Or if you have found the answer inside the history use the format:
-
-Final Answer: "The answer is in the history and is '<interpolate here what you have found>'"
-
-newQuestion: "Who is the wife of Pedro Sánchez, the current president of Spain?"
+newQuestion: Who is the wife of the current president of Poland, Andrzej Duda?
+New question: 'Who is the wife of the current president of Poland, Andrzej Duda?'
 Answer the following questions as best you can. You have access to the following tools:
 
 search: A search engine. Useful for when you need to answer questions about current events. Input should be a search query.
@@ -104,55 +68,86 @@ Final Answer: when you are sure you know the final answer, fill it with the fina
 
 Begin!
 
-Question: "Who is the wife of Pedro Sánchez, the current president of Spain?"
+Question: Who is the wife of the current president of Poland, Andrzej Duda?
 
-Plan: Search for the current president of Spain and then search for information about his wife.
+Plan: Search for the current president of Poland and then search for information about his wife.
 
 Action: search
-Action Input: "current president of Spain"
+Action Input: "current president of Poland"
 
-Going to execute the tool search('current president of Spain"')
-Google search question: current president of Spain"
+Going to execute the tool search('current president of Poland"')
+Google search question: current president of Poland"
 ***********
-Google search answer: Pedro Sánchez
+Google search answer: Andrzej Duda
 ***********
 Action: search
-Action Input: "wife of Pedro Sánchez"
+Action Input: "Andrzej Duda wife"
 
-Going to execute the tool search('wife of Pedro Sánchez"')
-Google search question: wife of Pedro Sánchez"
+Going to execute the tool search('Andrzej Duda wife"')
+Google search question: Andrzej Duda wife"
 ***********
-Google search answer: María Begoña Gómez Fernández
+Google search answer: Agata Kornhauser-Duda
 ***********
-Thought: María Begoña Gómez Fernández is the wife of Pedro Sánchez, the current president of Spain.
-Final Answer: María Begoña Gómez Fernández
-María Begoña Gómez Fernández
-```
-
-```
-How can I help? What is the name of the wife of the president of Spain?
+Thought: The wife of the current president of Poland, Andrzej Duda, is Agata Kornhauser-Duda.
+Final Answer: Agata Kornhauser-Duda
+Agata Kornhauser-Duda
+How can I help? What is the square root of the age of the wife of the president of Poland?
 Assuming we know the following facts:
 
-- Your answer to question: "Name of the current president of Spain" was "Pedro Sánchez"
-- Your answer to question: ""Who is the wife of Pedro Sánchez, the current president of Spain?"" was "María Begoña Gómez Fernández"
+- Your answer to question: "Name of the current president of Poland" was "Andrzej Duda"
+- Your answer to question: "Who is the wife of the current president of Poland, Andrzej Duda?" was "Agata Kornhauser-Duda"
 
 
-and that you have to answer the `question`: "What is the name of the wife of the president of Spain?"
+and that you have to answer the `question`: "What is the square root of the age of the wife of the president of Poland?"
+Reformulate the `question`. Use the following format for your output:
 
-Reformulate the `question` or even give the answer if you can deduce it 
-from the previous facts.
+newQuestion: Your reformulated question
 
-Use the following format for your output:
 
-newQuestion: "Your reformulated question"
+newQuestion: What is the square root of the age of Agata Kornhauser-Duda, the wife of the current president of Poland, Andrzej Duda?
+New question: 'What is the square root of the age of Agata Kornhauser-Duda, the wife of the current president of Poland, Andrzej Duda?'
+Answer the following questions as best you can. You have access to the following tools:
 
-Or if you have found the answer inside the history use the format:
+search: A search engine. Useful for when you need to answer questions about current events. Input should be a search query.
+calculator: Useful for getting the result of a numeric math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator. Examples of valid inputs for the calculator tool are: '(cos(2)+3!)*(-sqrt(2)*3)' and 'asin(0.5)^3'
 
-Final Answer: "The answer is in the history and is '<interpolate here what you have found>'"
+Use the following format:
 
-Final Answer: "The answer is in the history and is 'María Begoña Gómez Fernández'"
-```
+Question: the input question you must answer
+Plan: you should ellaborate a plan of what to do according to the current knowledge
+Action: the action to take, should be one of [search,calculator]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Plan/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: when you are sure you know the final answer, fill it with the final answer to the original input question
 
+Begin!
+
+Question: What is the square root of the age of Agata Kornhauser-Duda, the wife of the current president of Poland, Andrzej Duda?
+
+Plan: Search for the age of Agata Kornhauser-Duda and then calculate the square root.
+
+Action: search
+Action Input: "Agata Kornhauser-Duda age"
+
+Going to execute the tool search('Agata Kornhauser-Duda age"')
+Google search question: Agata Kornhauser-Duda age"
+***********
+Google search answer: 51 years
+***********
+Plan: Calculate the square root of 51.
+Action: calculator
+Action Input: sqrt(51)
+
+Going to execute the tool calculator('sqrt(51)')
+Calculator answer: 7.14142842854285
+***********
+Thought: I now know the final answer
+Final Answer: The square root of the age of Agata Kornhauser-Duda is approximately 7.14
+The square root of the age of Agata Kornhauser-Duda is approximately 7.14
+How can I help? 
+➜  langchain-mini git:(main) ✗ 
 ```
 How can I help? What is the square root of the age of the wife of the president of Spain?
 Assuming we know the following facts:
