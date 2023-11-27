@@ -5,6 +5,7 @@
   - [The Calculator tool](#the-calculator-tool)
   - [The prompt template](#the-prompt-template)
   - [The Reason-Action (ReAct) loop](#the-reason-action-react-loop)
+  - [OpenAI Assistant API](#openai-assistant-api)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
   - [Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"](#tracing-what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
   - [Tracing a Chat about "the current president of Poland"](#tracing-a-chat-about-the-current-president-of-poland)
@@ -169,6 +170,15 @@ Then we want to iteratively:
     } 
    ```
 
+## OpenAI Assistant API
+
+In November 2023 OpenAI released an API called <a  href="https://openai.com/blog/introducing-openai-assistant/" target="_blank">OpenAI Assistants</a> that allows you to build assistants that can perform tasks in the real world. The Assistant API and langchain are functionally similar. 
+An advantage of the Assistant API is that memory and context window are automatically managed where in langchain - at this time - you have explicitly set those things up.
+
+* <a  href="https://github.com/ULL-prompt-engineering/assistant-mervin-praison" target="_blank">Introduction to OpenAI Assistants API with Node.js</a> based on a video of Merwin Praison
+* <a  href="https://github.com/ULL-prompt-engineering/assistant-file-retrieval-ralf" target="_blank">How to upload files using OpenAI Assistants API"</a>
+
+
 ## Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
 
 See [/docs/how-many-five-years.md](/docs/how-many-five-years.md)
@@ -184,6 +194,7 @@ See [/docs/president-chat.md](/docs/president-chat.md)
 ## Tracing a chat about rubiks cube
 
 See [/docs/rubiks-cube.md](/docs/rubiks-cube.md)
+
 ## References
 
 * [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html) by [Colin Eberhardt](https://blog.scottlogic.com/ceberhardt) (May 2023)

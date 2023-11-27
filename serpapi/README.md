@@ -45,7 +45,9 @@ The [api-key](https://serpapi.com/search-api#api-parameters-serpapi-parameters-a
 fetch(`https://serpapi.com/search?api_key=${process.env.SERPAPI_API_KEY}&q=${question}`);
 ```
 
-makes an HTTP GET request to the SERP API (Search Engine Results Page API) provided by `serpapi.com`. 
+makes an HTTP GET request to the SERP API (**Search Engine Results Page API[^1]**) provided by `serpapi.com`. 
+
+[^1]: The acronym SERP stands for Search Engine Results Page and refers to the results pages displayed by a specific search engine: generally Google, but also Bing, Baidu or Yahoo.
 
 See the [full list](https://serpapi.com/advanced-google-query-parameters) of supported advanced search query parameters.
 
@@ -317,3 +319,11 @@ The question is: `Who is the president of Spain?`
   }
 ]
 ```
+
+## Prices
+
+The Google Search Console API is free to use. However, it is subject to usage limits. You can request an increase in your usage limits if you need to make more API calls.
+
+There are also a number of third-party APIs that allow you to access Google SERP data. These APIs may be free or paid, depending on the provider.
+
+Here are some examples <https://smacient.com/top-google-search-engine-apis/>.
