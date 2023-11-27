@@ -7,6 +7,7 @@ import env from "dotenv";
 env.config();
 
 import fs from "fs";
+
 import { rl, red, green, blue, purple } from "./src/utils.mjs";
 
 const promptTemplate = fs.readFileSync("assets/templates/prompt.txt", "utf8");
@@ -14,7 +15,7 @@ const mergeTemplate = fs.readFileSync("assets/templates/merge.txt", "utf8");
 
 import { tools } from "./src/tools.mjs";
 
-// use GPT-3.5 to complete a given prompts
+// use gpt-3.5-turbo to complete a given prompts
 import completePrompt from "./src/ask-chatgpt.mjs";
 
 const answerQuestion = async (question) => {
@@ -26,44 +27,52 @@ const answerQuestion = async (question) => {
              join("\n"), 
       toolnames: Object.keys(tools).join(",")
     });
+  console.log(red(prompt));
 
   // allow the LLM to iterate until it finds a final answer
   while (true) {
     const response = await completePrompt(prompt);
-
+    console.log(green(response));
+    
     // add this to the prompt
     prompt += response;
 
     const action = response.match(/Action: (.*)/)?.[1];
+    //console.log(`New prompt with the answer of the LLM:\n`)
+    //console.log(red(prompt));
+
     if (action) {
       // execute the action specified by the LLMs
       const actionInput = response.match(/Action Input: "?(.*)"?/)?.[1];
-      console.log(blue(`Action: ${action.trim()}`));
-      console.log(blue(`Action Input: ${actionInput}`));
+      console.log(`Going to execute the tool `+
+           blue(`${action.trim()}(${deb(actionInput)})`));
       const result = await tools[action.trim().toLowerCase()].execute(actionInput);
-      prompt += `Observation: ${result}\n`;
+      prompt += `Observation: ${result}\n`
     } else {
       return response.match(/Final Answer: (.*)/)?.[1];
     }
   }
 };
 
-// merge the chat history with a new question
-const mergeHistory = async (question, history) => {
-  const prompt = render(mergeTemplate, { question, history });
-  return await completePrompt(prompt);
-};
 
 // main loop - answer the user's questions
 let history = "";
+let skip = false;
 while (true) {
   let question = await rl.question("How can I help? ");
   if (!question.length) process.exit(0);
 
   if (history.length > 0) {
-    question = await mergeHistory(question, history);
+    // merge the chat history with a new question
+    let historyAndQuestion = render(mergeTemplate, { question, history })
+    question = await completePrompt(historyAndQuestion);
+    console.log(purple(historyAndQuestion));
+    console.log(purple(question));
+    question = question.match(/newQuestion: (.*)/)?.[1];
   }
-  const answer = await answerQuestion(question);
-  console.log(answer);
-  history += `Q:${question}\nA:${answer}\n`;
+  if (question) {
+    const answer = await answerQuestion(question);
+    console.log(answer);
+    history += `- Your answer to question: "${question}" was "${answer}"\n`;
+  }
 }

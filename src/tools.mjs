@@ -20,10 +20,10 @@ const googleSearch = async (question) => {
   const calculator = (input) => {
     try {
       let answer = Parser.evaluate(input).toString()
-      console.log(blue(`Calculator answer: ${answer}\n***********`));
+      console.log(purple(`Calculator answer: ${answer}\n***********`));
       return answer;
     } catch (e) {    
-      console.log(blue(`Calculator got errors: ${e}\n***********`));
+      console.log(purple(`Calculator got errors: ${e}\n***********`));
       return `Please reformulate the expression. The calculator tool has failed with error:\n'${e}'`;
     }
   }
@@ -31,12 +31,12 @@ const googleSearch = async (question) => {
   const tools = {
     search: {
       description:
-        "a search engine. useful for when you need to answer questions about current events. input should be a search query.",
+        "A search engine. Useful for when you need to answer questions about current events. Input should be a search query.",
       execute: googleSearch,
     },
     calculator: {
       description:
-        "Useful for getting the result of a math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.",
+        "Useful for getting the result of a numeric math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.",
       execute: calculator,
     },
   };
