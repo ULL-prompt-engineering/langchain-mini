@@ -176,7 +176,7 @@ In November 2023 OpenAI released an API called <a  href="https://openai.com/blog
 An advantage of the Assistant API is that memory and context window are automatically managed where in langchain - at this time - you have explicitly set those things up.
 
 * <a  href="https://github.com/ULL-prompt-engineering/assistant-mervin-praison" target="_blank">Introduction to OpenAI Assistants API with Node.js</a> based on a video of Merwin Praison
-* <a  href="https://github.com/ULL-prompt-engineering/assistant-file-retrieval-ralf" target="_blank">How to upload files using OpenAI Assistants API"</a>
+* <a  href="https://github.com/ULL-prompt-engineering/assistant-file-retrieval-ralf" target="_blank">How to upload files using OpenAI Assistants API"</a> based on a video of Ralf Elving
 
 
 ## Tracing the Agent model "How many five year periods are in the current year? Be accurate!"
