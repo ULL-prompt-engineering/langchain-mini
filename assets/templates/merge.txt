@@ -10,7 +10,3 @@ from the previous facts.
 Use the following format for your output:
 
 newQuestion: "Your reformulated question"
-
-Or if you have found the answer inside the history use the format:
-
-Final Answer: "The answer is in the history and is '<interpolate here what you have found>'"

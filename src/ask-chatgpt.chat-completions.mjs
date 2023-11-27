@@ -1,6 +1,9 @@
-import OpenAI from "openai";
-import { red, green, } from "./utils.mjs";
+import { rl, red, green, blue, purple } from "./utils.mjs";
 import deb from "./deb.mjs";
+
+import OpenAI from "openai";
+//import { red, green, } from "./utils.mjs";
+//import deb from "./deb.mjs";
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -32,7 +35,7 @@ export default async (prompt) => {
         // The returned text will not contain the stop sequence. Defaults to null
         n: 1, // integer. Optional. Defaults to 1
     });
-    //console.log(green(deb(completion)));
+    // console.log(green(deb(completion)));
     let res = completion.choices[0].message.content;
     //console.log(green(res));
     return res;
