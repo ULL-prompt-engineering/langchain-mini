@@ -7,25 +7,13 @@
   - [The Reason-Action (ReAct) loop](#the-reason-action-react-loop)
   - [Tracing the Agent model "How many five year periods are in the current year? Be accurate!"](#tracing-the-agent-model-how-many-five-year-periods-are-in-the-current-year-be-accurate)
   - [Tracing "What was the highest temperature (in Celsius) in Santa Cruz de Tenerife yesterday?"](#tracing-what-was-the-highest-temperature-in-celsius-in-santa-cruz-de-tenerife-yesterday)
-  - [Tracing a Chat](#tracing-a-chat)
+  - [Tracing a Chat about "the current president of Poland"](#tracing-a-chat-about-the-current-president-of-poland)
+  - [Tracing a chat about rubiks cube](#tracing-a-chat-about-rubiks-cube)
   - [References](#references)
 
 # 🦜️🔗 LangChain-mini 
 
 This is a very simple re-implementation of [LangChain](https://github.com/hwchase17/langchain), in ~100 lines of code. In essence, it is an LLM (GPT-3.5) powered chat application that is able to use tools (Google search and a calculator) in order to hold conversations and answer questions. 
-
-Here's an example:
-
-~~~
-Q: What is the world record for solving a rubiks cube?
-The world record for solving a Rubik's Cube is 4.69 seconds, held by Yiheng Wang (China).
-Q: Can a robot solve it faster?
-The fastest time a robot has solved a Rubik's Cube is 0.637 seconds.
-Q: Who made this robot?
-Infineon created the robot that solved a Rubik's Cube in 0.637 seconds.
-Q: What time would an average human expect for solving?
-It takes the average person about three hours to solve a Rubik's cube for the first time.
-~~~
 
 This is not intended to be a replacement for LangChain, instead it was built for fun and educational purposes. If you're interested in how LangChain, and similar tools work, this is a good starting point.
 
@@ -189,10 +177,13 @@ See [/docs/how-many-five-years.md](/docs/how-many-five-years.md)
 
 See [/docs/highest-temperature.md](/docs/highest-temperature.md)
 
-## Tracing a Chat
+## Tracing a Chat about "the current president of Poland"
 
-See [/docs/chat.md](/docs/chat.md)
+See [/docs/president-chat.md](/docs/president-chat.md)
 
+## Tracing a chat about rubiks cube
+
+See [/docs/rubiks-cube.md](/docs/rubiks-cube.md)
 ## References
 
 * [Re-implementing LangChain in 100 lines of code](https://blog.scottlogic.com/2023/05/04/langchain-mini.html) by [Colin Eberhardt](https://blog.scottlogic.com/ceberhardt) (May 2023)
