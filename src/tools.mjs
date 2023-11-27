@@ -36,7 +36,9 @@ const googleSearch = async (question) => {
     },
     calculator: {
       description:
-        "Useful for getting the result of a numeric math expression. The input to this tool should be a valid mathematical expression that could be executed by a simple calculator.",
+        "Useful for getting the result of a numeric math expression. "+
+        "The input to this tool should be a valid mathematical expression that could be executed by a simple calculator. "+
+        "Examples of valid inputs for the calculator tool are: '(cos(2)+3!)*(-sqrt(2)*3)' and 'asin(0.5)^3'",
       execute: calculator,
     },
   };
