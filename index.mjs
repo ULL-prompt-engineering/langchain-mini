@@ -16,10 +16,10 @@ const mergeTemplate = fs.readFileSync("assets/templates/merge.txt", "utf8");
 import { tools } from "./src/tools.mjs";
 
 // This is chat-gpt-3.5 and the old completions endpoint
-//import completePrompt from "./src/ask-chatgpt.mjs";
+import completePrompt from "./src/ask-chatgpt.mjs";
 // this is with gpt-3.5-turbo and the new chat completions endpoint
 // Uncomment the following line to use the new chat completions endpoint
-import completePrompt from "./src/ask-chatgpt.chat-completions.mjs";
+//import completePrompt from "./src/ask-chatgpt-chat-completions.mjs";
 
 const answerQuestion = async (question) => {
   // construct the prompt, with our question and the tools that the chain can use
@@ -40,7 +40,7 @@ const answerQuestion = async (question) => {
     // add this to the prompt
     prompt += response;
 
-    const action = response.match(/Action: (.*)/)?.[1];
+    const action = response.match(/Action: (.+)/)?.[1];
     //console.log(`New prompt with the answer of the LLM:\n`)
     //console.log(red(prompt));
 
@@ -60,7 +60,7 @@ const answerQuestion = async (question) => {
 
 // main loop - answer the user's questions
 let history = ``;
-let skip = false;
+//let skip = false;
 while (true) {
   let question = await rl.question("How can I help? ");
   if (!question.length) process.exit(0);
@@ -77,9 +77,8 @@ while (true) {
       question = newQuestion;
     }
   }
-  if (question) {
-    const answer = await answerQuestion(question);
-    console.log(answer);
-    history += `- Your answer to question: "${question}" was "${answer}"\n`;
-  }
+  const answer = await answerQuestion(question);
+  console.log(answer);
+  history += `- Your answer to question: "${question}" was "${answer}"\n`;
+
 }

@@ -30,4 +30,5 @@ export default async (prompt) =>
             console.log(red(prompt));
             console.log(green(res));
             return res;
-        });
+        })
+        .catch((err) => { console.error(red(err)); process.exit(1); })

@@ -35,6 +35,10 @@ langchain-mini@1.0.0 /Users/casianorodriguezleon/campus-virtual/2223/learning/op
 └── openai@4.20.0
 ```
 
+- The Completion API is designed for single-turn tasks, where you provide a prompt and the API generates a relevant response. 
+- On the other hand, the Chat Completion API is designed for multi-turn conversations, where you provide a series of messages and the API generates responses based on the context of the conversation.
+- When it comes to cost, the Completion API is generally more cost-effective. 
+
 
 ## Chat Completions API Introduction
 
