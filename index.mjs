@@ -16,7 +16,7 @@ const mergeTemplate = fs.readFileSync("assets/templates/merge.txt", "utf8");
 import { tools } from "./src/tools.mjs";
 
 // This is chat-gpt-3.5 and the old completions endpoint
-import completePrompt from "./src/ask-chatgpt.mjs";
+import completePrompt from "./src/ask-chatgpt.mjs"; 
 // this is with gpt-3.5-turbo and the new chat completions endpoint
 // Uncomment the following line to use the new chat completions endpoint
 //import completePrompt from "./src/ask-chatgpt-chat-completions.mjs";
@@ -63,7 +63,10 @@ let history = ``;
 //let skip = false;
 while (true) {
   let question = await rl.question("How can I help? ");
-  if (!question.length) process.exit(0);
+  if (!question.length) {
+    rl.close();
+    process.exit(0);
+  }
 
   if (history.length > 0) {
     // merge the chat history with a new question
